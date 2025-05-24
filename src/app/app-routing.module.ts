@@ -9,13 +9,15 @@ import { ProductsComponent } from './products/products.component';
 const routes: Routes = [
   {
     path:'', 
-    component:DashboardComponent  // http://localhost:4200
+    redirectTo:'home',   // http://localhost:4200
+    pathMatch:'full'
+  },
+  
+  {
+    path:'home', 
+    component:DashboardComponent  // http://localhost:4200/home
   },
 
-     {
-    path:'home', 
-    component:DashboardComponent   // http://localhost:4200/home
-  },
 
   {
     path:'users',           // http://localhost:4200/users
