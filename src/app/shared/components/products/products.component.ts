@@ -1,0 +1,26 @@
+import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../service/products.service';
+import { Iproduct } from '../../models/products';
+
+@Component({
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
+})
+export class ProductsComponent implements OnInit {
+  
+  productsArr !: Array<Iproduct>  // this property is taken to hold your data
+
+  constructor(
+    // we have to make API Call through service and also get the data from there
+    // so for that we inject the instance of service
+    private productService : ProductsService 
+  ) { }
+
+  ngOnInit(): void {
+    
+    this.productsArr = this.productService.fetchAllproducts();
+
+  }
+
+}

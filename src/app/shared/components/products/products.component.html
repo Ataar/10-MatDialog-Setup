@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-4">
+    <ul class="list-group">
+        <!-- router link me do cheze cahhiye ek string aur dusra id
+         aur ye property se milenge isliye routerlink ko prroperty binding me likhnge 
+         like [routerLink] -->
+      <li 
+      [routerLink]="['/products', prod.pid]"
+      class="list-group-item" *ngFor="let prod of productsArr">
+        {{prod.pname}}  {{prod.pid}}
+      </li>
+    </ul>
+  </div>
+</div>
