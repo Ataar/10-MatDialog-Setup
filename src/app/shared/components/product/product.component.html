@@ -1,0 +1,151 @@
+
+<button
+  mat-button
+  color="primary"
+  (click)="goBack()"
+  class="back-button"
+  matTooltip="Back to previous page"
+  matTooltipPosition="left"
+  matTooltipClass="custom-tooltip">
+  <mat-icon>arrow_back</mat-icon>
+  <span class="back-text">Back</span>
+</button>
+
+<div class="container py-3" *ngIf="product">
+  <div class="card mx-auto product-card">
+  
+    <div class="card-body">
+         <img
+            [src]="product.image"
+            [alt]="product.pname"
+            class="product-image"/>
+      <h4 class="card-title product-title">{{ product.pname }}</h4>     
+      <p class="card-text status-text">
+        <strong> Status : </strong>
+        <span
+          [ngClass]="{
+            'text-warning': product.pstatus === 'InProgress',
+            'text-success': product.pstatus === 'Delivered',
+            'text-primary': product.pstatus === 'Shipped'
+          }"
+          class="status-badge"
+        >
+          {{ product.pstatus }}
+        </span>
+      </p>
+      <p class="card-text return-text">
+        <strong> Returnable : </strong>
+        <span
+          class="badge return-badge"
+          [ngClass]="{
+            'bg-success': product.canReturn,
+            'bg-danger': !product.canReturn
+          }"
+        >
+          {{ product.canReturn ? 'Yes' : 'No' }}
+        </span>
+      </p>
+      
+      <a href="https://www.croma.com/phones-wearables/mobile-phones/c/10">
+        <button class="btn btn-primary order-btn">
+          Order Now
+        </button>
+      </a> 
+      
+      
+      <div class="d-flex justify-content-between">
+       <button routerLink="edit"
+       class="btn btn-primary">Edit</button>
+       <button class="btn btn-danger">Delete</button>
+
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+ <!-- <button mat-icon-button (click)="goBack()" class="big-icon-only" matTooltip="Back">
+  <mat-icon>arrow_back</mat-icon>
+  <span class="big-text">Back</span>
+</button> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ---------------------------------------------------------------------------------- -->
+
+
+<!-- 
+<div class="container py-3" *ngIf="product">
+  <div class="card mx-auto product-card">
+    <img
+      [src]="product.image"
+      [alt]="product.pname"
+      [title]="product.title"
+      class="card-img-top product-image"
+    />
+    <div class="card-body">
+      <h4 class="card-title product-title">{{ product.pname }}</h4>
+      <p class="card-text"> <strong> Weight : </strong>{{ product.kg }}</p>
+      <p class="card-text price-text">
+        <strong> Price : </strong> ₹{{ product.price | number }}
+      </p>
+      <p class="card-text status-text">
+        <strong> Status : </strong>
+        <span
+          [ngClass]="{
+            'text-warning': product.pstatus === 'InProgress',
+            'text-success': product.pstatus === 'Delivered',
+            'text-primary': product.pstatus === 'Shipped'
+          }"
+          class="status-badge"
+        >
+          {{ product.pstatus }}
+        </span>
+      </p>
+      <p class="card-text return-text">
+        <strong> Returnable : </strong>
+        <span
+          class="badge return-badge"
+          [ngClass]="{
+            'bg-success': product.canReturn,
+            'bg-danger': !product.canReturn
+          }"
+        >
+          {{ product.canReturn ? 'Yes' : 'No' }}
+        </span>
+      </p>
+      
+      <a href="https://www.bakingo.com/cakes/pune">
+        <button class="btn btn-primary order-btn">
+          Order Now
+        </button>
+      </a> 
+      
+      
+      <div class="d-flex justify-content-between">
+       <button class="btn btn-primary">Edit</button>
+       <button class="btn btn-danger">Delete</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+ -->
+
+
+
+
+  <!-- <button class="btn btn-primary order-btn" onclick="window.location.href='https://www.bakingo.com/cakes/pune'">Order Now</button> -->

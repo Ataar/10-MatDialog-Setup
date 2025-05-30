@@ -1,0 +1,38 @@
+
+<!-- <h2 *ngIf="!isEditMode">Add Product</h2>
+<h2 *ngIf="isEditMode">Update Product</h2> -->
+
+
+
+<h3 class="head01">Fill Your Data</h3>
+<div class="col-md-6 offset-md-3 mt-5">
+  <form (ngSubmit)="onSubmit()" #productForm="ngForm">
+    <div class="mb-3">
+      <label for="pname" class="form-label">Product Name</label>
+      <input
+        type="text"
+        id="pname"
+        class="form-control"
+        required
+        name="pname"
+       
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Image URL</label>
+      <input
+        type="text"
+        id="image"
+        class="form-control"
+        required
+        name="image"
+        
+      />
+    </div>
+
+       <button type="submit" class="btn btn-success">
+       {{isEditMode ? 'Update Product' : 'Add Product' }}
+       </button>
+  </form>
+</div> 

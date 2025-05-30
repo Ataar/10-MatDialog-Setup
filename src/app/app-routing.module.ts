@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './shared/components/dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { ProductsComponent } from './shared/components/products/products.component';
-import { ProductFormComponent } from './product-form/product-form.component';
-import { ProductComponent } from './product/product.component';
+import { ProductFormComponent } from './shared/components/product-form/product-form.component';
+import { ProductComponent } from './shared/components/product/product.component';
 
 
 
@@ -43,7 +43,7 @@ const routes: Routes = [
 
   },
   {
-    path:'products/pid/edit' ,  // http://localhost:4200/products/edit
+    path:'products/:pid/edit' ,  // http://localhost:4200/products/edit
     component:ProductFormComponent
   }
 

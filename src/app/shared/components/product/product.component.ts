@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../shared/service/products.service';
+import { ProductsService } from '../../service/products.service';
 import { ActivatedRoute } from '@angular/router';
-import { Iproduct } from '../shared/models/products';
-
+import { Iproduct } from '../../models/products';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -20,7 +20,8 @@ product ! : Iproduct
     
   constructor(
     private routes: ActivatedRoute , // ActivatedRoute ye instance apko product ka id dega
-    private prodsutsService : ProductsService
+    private prodsutsService : ProductsService,
+    private location : Location
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +30,14 @@ product ! : Iproduct
 
     this.product = this.prodsutsService.getProduct(this.prodId)
     //  Get Id and api call using service to get single product.
-    
+     console.log(this.product);
+     
+  }
+
+   
+  goBack()
+  {
+    this.location.back()
   }
 
 }

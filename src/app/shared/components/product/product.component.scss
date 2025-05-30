@@ -5,6 +5,7 @@
     font-size: 35px;
  }
 
+
  /* Custom styles for the product card */
   .product-card {
     max-width: 600px;
@@ -85,8 +86,7 @@
     transition: background 0.3s ease, transform 0.2s ease;
     margin-top: 1rem;
   }
-
-.order-btn a
+ a button
 {
   text-decoration: none;
   color: white;
@@ -118,3 +118,55 @@
       font-size: 0.9rem;
     }
   }
+
+
+  // ----------------------    Back Button css--------------------------
+
+.back-button {
+  font-size: 1.2rem;         // Increase overall text size
+  padding: 10px 20px;        // Better spacing
+  display: flex;
+  align-items: center;
+  gap: 8px;                  // Space between icon and text
+}
+
+.back-icon {
+  font-size: 28px;           // Increase icon size
+}
+
+.back-text {
+  font-weight: 500;          // Medium weight for better clarity
+}
+
+
+  // ----------------------    Back Button css End--------------------------
+
+
+
+  ::ng-deep .mat-tooltip {
+   padding: 10px 14px !important;  // Adjust tooltip padding
+  margin: 1px !important;         // Reduce space between tooltip and button  font-size: 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  
+}
+
+.product-image {
+  width: 100%;
+  max-width: 400px;
+  max-height:600px;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 1.5rem auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid #e0e0e0;
+}
+
+.product-image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+  border:1px solid #007bff;
+}

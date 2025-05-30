@@ -9,9 +9,11 @@ import {MatButtonModule} from '@angular/material/button';
 import { DashboardComponent } from './shared/components/dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { ProductsComponent } from './shared/components/products/products.component';
-import { FormsModule } from '@angular/forms';
-import { ProductComponent } from './product/product.component';
-import { ProductFormComponent } from './product-form/product-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductComponent } from './shared/components/product/product.component';
+import { ProductFormComponent } from './shared/components/product-form/product-form.component';
+import { MatIconModule } from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,10 @@ import { ProductFormComponent } from './product-form/product-form.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatIconModule,
+    MatTooltipModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
