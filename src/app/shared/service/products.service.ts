@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Iproduct } from '../models/products';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class ProductsService {
       pid: 'GGL-PXL-7A-001',
       pstatus: 'Processing',
       canReturn: 1,
+      productUrl:'https://store.google.com/in/category/phones?hl=en-IN'
     },
     {
       pname: 'Sony WH-1000XM5 Headphones',
@@ -21,6 +23,7 @@ export class ProductsService {
       pid: 'SNY-HDPH-XM5-BLK',
       pstatus: 'Awaiting Shipment',
       canReturn: 1,
+      productUrl:''
     },
     {
       pname: 'Dell XPS 13 Laptop',
@@ -28,6 +31,7 @@ export class ProductsService {
       pid: 'DLL-XPS13-9310-SLV',
       pstatus: 'Delivered',
       canReturn: 0,
+      productUrl:''
     },
     {
       pname: 'Apple iPad Air 5th Gen',
@@ -35,6 +39,7 @@ export class ProductsService {
       pid: 'APL-IPADAIR5-BLU-64',
       pstatus: 'Shipped',
       canReturn: 1,
+      productUrl:''
     },
     {
       pname: 'Samsung Odyssey G7 Monitor',
@@ -42,6 +47,7 @@ export class ProductsService {
       pid: 'SAM-MON-G7-27',
       pstatus: 'Out for Delivery',
       canReturn: 1,
+      productUrl:''
     },
     {
       pname: 'Logitech MX Master 3S Mouse',
@@ -49,6 +55,7 @@ export class ProductsService {
       pid: 'LOG-MXM3S-GRY',
       pstatus: 'Order Confirmed',
       canReturn: 1,
+      productUrl:''
     },
     {
       pname: 'Kindle Paperwhite Signature Edition',
@@ -56,6 +63,7 @@ export class ProductsService {
       pid: 'AMZ-KPWSE-32GB',
       pstatus: 'Delivered',
       canReturn: 0,
+      productUrl:''  
     },
     {
       pname: 'GoPro HERO11 Black',
@@ -63,6 +71,7 @@ export class ProductsService {
       pid: 'GPR-HRO11-BLK',
       pstatus: 'Pending Payment',
       canReturn: 1,
+       productUrl:'https://gopro.com/en/bs/shop/cameras/hero11-black/CHDHX-111-master.html'
     },
     {
       pname: 'Bose QuietComfort Earbuds II',
@@ -70,6 +79,7 @@ export class ProductsService {
       pid: 'BSE-QCEB2-SOAP',
       pstatus: 'Shipped',
       canReturn: 1,
+      productUrl:''
     },
     {
       pname: 'Nintendo Switch OLED Model',
@@ -77,12 +87,14 @@ export class ProductsService {
       pid: 'NIN-SWOLED-WHT',
       pstatus: 'In Transit',
       canReturn: 1,
+      productUrl:''
     }
 
    
   ];
+ 
 
-  constructor() {}
+  constructor(private router : Router) {}  // router instance is injected 
 
   // API call to fetch all products data
   fetchAllproducts(): Array<Iproduct> {
@@ -93,37 +105,23 @@ export class ProductsService {
     // API call to get a product using pid = id(parameter)
     return this.productsArr.find((prod) => prod.pid === id)!;
   }
+
+   addNewProduct(prod : Iproduct)
+   {
+      // API call to POST new Product in DB
+     this.productsArr.push(prod);
+    this.router.navigate(['/products']);
+   }
+
+   updatedObj(updatePro:Iproduct)
+   {
+      // API to Patch
+     let getIndex = this.productsArr.findIndex(prod=>prod.pid===updatePro.pid)
+
+      this.productsArr[getIndex] = updatePro;
+      this.router.navigate(['/products',updatePro.pid]);
+   }
+
+   
 }
 
-// productsArr: Array<Iproduct> = [
-//   {
-//     pname: 'Black Forest Cake',
-//     pid: '123',
-//     pstatus: 'InProgress',
-//     canReturn: 1,
-//     price: 500, // Realistic price for a 1 kg Black Forest Cake
-//     image: './assets/images/black-forest-cake.jpg',
-//     kg: '1kg',
-//     title: 'Delicious Black Forest Cake with Cherries and Cream'
-//   },
-//   {
-//     pname: 'Choco Cream Cake',
-//     pid: '456',
-//     pstatus: 'Delivered',
-//     canReturn: 0,
-//     price: 600, // Realistic price for a 1 kg Choco Cream Cake
-//     image: './assets/images/image-LNVBQ8-1706080822.jpg',
-//     kg: '1.5kg',
-//     title: 'Rich Chocolate Cream Cake with Smooth Frosting'
-//   },
-//   {
-//     pname: 'Vanilla-Scented Cake',
-//     pid: '789',
-//     pstatus: 'Shipped',
-//     canReturn: 1,
-//     price: 700, // Premium price for a 1 kg gourmet Vanilla-Scented Cake
-//     image: './assets/images/vanilla-scented-cornmeal-cake-with-olive-oil-buttercream-FT-RECIPE0921-31dde73698aa4f0e8609be000480103f.jpg',
-//     kg: '1kg',
-//     title: 'Classic Red Velvet Cake with Cream Cheese Frosting'
-//   }
-// ];

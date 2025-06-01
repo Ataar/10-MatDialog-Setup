@@ -4,7 +4,118 @@
 
 
 
+
 <h3 class="head01">Fill Your Data</h3>
+<div class="col-md-6 offset-md-3 mt-5">
+  <form (ngSubmit)="onSubmit()" #productForm="ngForm">
+    
+    <!-- Product Name -->
+    <div class="mb-3">
+      <label for="pname" class="form-label">Product Name</label>
+      <input
+        type="text"
+        id="pname"
+        class="form-control"
+        required
+        name="pname"
+        ngModel
+      />
+    </div>
+
+    <!-- Image URL -->
+    <div class="mb-3">
+      <label for="image" class="form-label">Image URL</label>
+      <input
+        type="text"
+        id="image"
+        class="form-control"
+        required
+        name="image"
+        ngModel
+      />
+    </div>
+
+    <!-- Product Status -->
+    <div class="mb-3">
+      <label for="pstatus" class="form-label">Product Status</label>
+      <select
+        id="pstatus"
+        class="form-control"
+        required
+        name="pstatus"
+        ngModel
+      >
+        <option value="">Select Status</option>
+        <option value="Processing">Processing</option>
+        <option value="Awaiting Shipment">Awaiting Shipment</option>
+        <option value="Pending Payment">Pending Payment</option>
+        <option value="Shipped">Shipped</option>
+        <option value="Out for Delivery">Out for Delivery</option>
+        <option value="In Transit">In Transit</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Order Confirmed">Order Confirmed</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+    </div>
+
+    <!-- Can Return -->
+    <div class="mb-3">
+      <label for="canReturn" class="form-label">Can Return?</label>
+      <select
+        id="canReturn"
+        class="form-control"
+        required
+        name="canReturn"
+        ngModel
+      >
+        <option value="">Select Option</option>
+        <option [value]="1">Yes</option>
+        <option [value]="0">No</option>
+      </select>
+    </div>
+
+    <!-- Product Website URL -->
+<!-- <div class="form-group">
+  <label for="productUrl">Product Website URL</label>
+  <input type="text" class="form-control" id="productUrl" [(ngModel)]="productUrl" name="productUrl">
+</div> -->
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-success">
+      {{ isEditMode ? 'Update Product' : 'Add Product' }}
+    </button>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h3 class="head01">Fill Your Data</h3>
 <div class="col-md-6 offset-md-3 mt-5">
   <form (ngSubmit)="onSubmit()" #productForm="ngForm">
     <div class="mb-3">
@@ -15,6 +126,7 @@
         class="form-control"
         required
         name="pname"
+        ngModel
        
       />
     </div>
@@ -27,12 +139,14 @@
         class="form-control"
         required
         name="image"
-        
+        ngModel
       />
     </div>
+
+    
 
        <button type="submit" class="btn btn-success">
        {{isEditMode ? 'Update Product' : 'Add Product' }}
        </button>
   </form>
-</div> 
+</div>  -->

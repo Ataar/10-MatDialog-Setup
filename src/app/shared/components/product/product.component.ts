@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../service/products.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Iproduct } from '../../models/products';
 import { Location } from '@angular/common';
 @Component({
@@ -21,7 +21,9 @@ product ! : Iproduct
   constructor(
     private routes: ActivatedRoute , // ActivatedRoute ye instance apko product ka id dega
     private prodsutsService : ProductsService,
-    private location : Location
+    private location : Location,
+  private router: Router,
+    
   ) { }
 
   ngOnInit(): void {
@@ -37,9 +39,23 @@ product ! : Iproduct
    
   goBack()
   {
-    this.location.back()
+    this.router.navigate(['/products']);
   }
 
+goToProduct(url: string) {
+  url ? window.location.href= url : this.router.navigate(['/products']);
+  //  here url ?→ checks if url exists (is truthy).
+
+  // window.location.href = url → changes the current page to that URL (same as clicking a normal link).
+}
+
+  // If we want to open in new tab
+  
+// goToProduct(url: string | null) {
+//   url ? window.open(url, '_blank', 'noopener') : this.router.navigate(['/products']);
+// }
+
+ 
 }
 
 
