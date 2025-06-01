@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confi
     ProductComponent,
     ProductFormComponent,
     ConfirmDialogComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confi
     MatIconModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+       
   ],
   providers: [],
   bootstrap: [AppComponent]
