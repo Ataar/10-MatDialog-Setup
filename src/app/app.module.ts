@@ -14,6 +14,8 @@ import { ProductComponent } from './shared/components/product/product.component'
 import { ProductFormComponent } from './shared/components/product-form/product-form.component';
 import { MatIconModule } from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     UsersComponent,
     ProductsComponent,
     ProductComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     FormsModule,
     MatIconModule,
     MatTooltipModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

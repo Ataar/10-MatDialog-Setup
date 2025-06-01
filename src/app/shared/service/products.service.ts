@@ -122,6 +122,18 @@ export class ProductsService {
       this.router.navigate(['/products',updatePro.pid]);
    }
 
+
+   onDelPro(product:Iproduct)
+   {
+       // API Call to delete single product
+      let getIndex = this.productsArr.findIndex(pro=>pro.pid===product.pid)
+       console.log(getIndex);
+       this.productsArr.splice(getIndex , 1)
+        // if we want to navigate form ts so RouterService will help to navigate 
+        this.router.navigate(['products'])
+   
+   }
+
    
 }
 

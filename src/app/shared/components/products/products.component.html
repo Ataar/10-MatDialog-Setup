@@ -8,21 +8,31 @@
   <div class="col-md-8 offset-md-2">
     <h1 class="head01">Your Choice?</h1>
     <div class="list-group">
-      <a
-        *ngFor="let prod of productsArr"
-        [routerLink]="[prod.pid]"
-        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center">
-          <img
-            [src]="prod.image"
-            [alt]="prod.pname"
-            class="product-image" />
-          <div>
-            <h3 class="product-name"> {{ prod.pname }} </h3>
+
+      <ng-container *ngIf="productsArr && productsArr.length>0; else noProduct">
+        <a
+          *ngFor="let prod of productsArr"
+          [routerLink]="[prod.pid]"
+          class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <img
+              [src]="prod.image"
+              [alt]="prod.pname"
+              class="product-image" />
+            <div>
+              <h3 class="product-name"> {{ prod.pname }} </h3>
+            </div>
           </div>
-        </div>
-        <span class="badge bg-secondary p-2 text-white">{{ prod.pstatus }}</span>
-      </a>
+          <span class="badge bg-secondary p-2 text-white">{{ prod.pstatus }}</span>
+        </a>
+      </ng-container>
+
     </div>
   </div>
 </div>
+
+<ng-template #noProduct>
+  <p class="alert alert-info text-center font-weight-bold h5">
+    NO Data Found
+  </p>
+</ng-template>

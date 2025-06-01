@@ -3,6 +3,9 @@ import { ProductsService } from '../../service/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iproduct } from '../../models/products';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -23,6 +26,7 @@ product ! : Iproduct
     private prodsutsService : ProductsService,
     private location : Location,
   private router: Router,
+   private dialog: MatDialog
     
   ) { }
 
@@ -55,6 +59,22 @@ goToProduct(url: string) {
 //   url ? window.open(url, '_blank', 'noopener') : this.router.navigate(['/products']);
 // }
 
+
+onDelete() {
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    data: {
+      title: 'Confirm Delete',
+      message: 'Are you sure you want to delete this product?'
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.prodsutsService.onDelPro(this.product);
+      this.router.navigate(['/products']);
+    }
+  });
+}
  
 }
 
