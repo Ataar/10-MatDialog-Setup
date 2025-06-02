@@ -1,19 +1,20 @@
-
 <nav class="navbar navbar-expand-lg navbar-light">
- <a class="navbar-brand text-white" routerLink="">
-  <img src="./assets/images/172865-removebg-preview.png" alt="Logo" class="logo-img">
-</a>
+  <a class="navbar-brand text-white" routerLink="">
+    <img src="./assets/images/172865-removebg-preview.png" alt="Logo" class="logo-img">
+  </a>
 
-<button class="navbar-toggler" type="button" data-toggle="collapse" 
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
+  <!-- Hamburger / Close Button -->
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+      <span *ngIf="!navbarOpen" class="navbar-toggler-icon"></span>
+      <span *ngIf="navbarOpen" class="close-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+          <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </button>
 
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <!-- Toggle show class -->
+  <div class="collapse navbar-collapse" [class.show]="navbarOpen" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
@@ -37,24 +38,42 @@
 
 
 
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="home">Home <span class="sr-only">(current)</span></a>
+
+<!-- 
+<nav class="navbar navbar-expand-lg navbar-light">
+ <a class="navbar-brand text-white" routerLink="">
+  <img src="./assets/images/172865-removebg-preview.png" alt="Logo" class="logo-img">
+</a>
+
+<button class="navbar-toggler" type="button" data-toggle="collapse" 
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="users">Users</a>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="users" routerLinkActive="active">Users</a>
       </li>
-     <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="products">Products</a>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="products" routerLinkActive="active">Products</a>
       </li>
     </ul>
-  
   </div>
-</nav> -->
+  
+</nav>
+
+ -->
+
+
+
+
+
