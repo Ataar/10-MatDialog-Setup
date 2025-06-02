@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../service/products.service';
 import { Iproduct } from '../../models/products';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -14,13 +15,17 @@ export class ProductsComponent implements OnInit {
   constructor(
     // we have to make API Call through service and also get the data from there
     // so for that we inject the instance of service
-    private productService : ProductsService 
+    private productService : ProductsService,
+    private route : Router 
   ) { }
 
   ngOnInit(): void {
     
     this.productsArr = this.productService.fetchAllproducts();
-
+    
   }
 
+//   navigateToAddProduct() {
+//   this.route.navigate(['/products/addProduct']);
+// }
 }
