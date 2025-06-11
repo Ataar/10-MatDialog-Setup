@@ -1,0 +1,29 @@
+<div class="container my-2">
+  <h2 class="text-center fw-bold mb-4 text-uppercase">
+    👥 Team Members
+  </h2>
+
+  <div class="row g-4 justify-content-center">
+    <div class="col-md-6 col-lg-4 mt-4" *ngFor="let user of usersArr">
+      <div
+        class="card border-0 shadow-lg rounded-4 h-100 text-center user-card"
+        (click)="goToUserDetails(user.userId)"
+        style="cursor: pointer;"
+      >
+        <div class="card-body p-4">
+          <img
+            [src]="user.avatar"
+            alt="{{ user.username }}"
+            class="rounded-circle mb-3"
+            width="90"
+            height="90"
+          />
+
+          <h5 class="fw-semibold mb-2">{{ user.username }}</h5>
+          <!-- <div>{{ user.userRole }}</div> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

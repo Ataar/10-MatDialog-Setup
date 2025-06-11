@@ -20,8 +20,10 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+      // fetchAllproducts returns data means whatever the method returns data store into productsArr property 
     this.productsArr = this.productService.fetchAllproducts();
+    
+    // console.log(this.productsArr);
     
   }
 
@@ -29,3 +31,8 @@ export class ProductsComponent implements OnInit {
 //   this.route.navigate(['/products/addProduct']);
 // }
 }
+
+
+
+
+

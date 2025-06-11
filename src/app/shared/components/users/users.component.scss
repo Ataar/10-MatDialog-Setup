@@ -1,0 +1,31 @@
+
+.letter-spacing-5 {
+  letter-spacing: 2px;
+}
+
+.user-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
+  }
+
+  img {
+    object-fit: cover;
+    border: 2px solid #dee2e6;
+    height: 200px;
+    width: 200px;
+    // padding: px;
+  }
+}
+
+.fw-semibold
+{
+  font-family: Georgia;
+  font-weight: bold;
+  font-size: 25px;
+  text-transform: capitalize;
+
+}
