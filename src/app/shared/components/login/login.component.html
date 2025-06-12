@@ -6,19 +6,55 @@
     <h2>Welcome Back</h2>
     <p>Don't have an account yet ? <a href="#"> Sign up </a></p>
 
-    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
-      <div class="input-icon">
-        <i class="fas fa-envelope"></i>
-        <input type="email" placeholder="Email address" required [(ngModel)]="email" name="email" />
-      </div>
 
-      <div class="input-icon">
-        <i class="fas fa-lock"></i>
-        <input type="password" placeholder="Password" required [(ngModel)]="password" name="password" />
-      </div>
+<form (ngSubmit)="onLogin()" #loginForm="ngForm" novalidate>
 
-      <button type="submit" class="login-btn">Login</button>
-    </form>
+  <!-- Email Field -->
+  <div class="form-group">
+    <div class="input-icon">
+      <i class="fas fa-envelope"></i>
+      <input
+        type="email"
+        placeholder="Email address"
+        required
+        name="email"
+        [(ngModel)]="email"
+        #emailRef="ngModel"
+      />
+      <span class="error-icon" *ngIf="emailRef.invalid && emailRef.touched">
+        <i class="fas fa-exclamation-circle"></i>
+      </span>
+    </div>
+    <div class="error-text" *ngIf="emailRef.invalid && emailRef.touched">
+      <small *ngIf="emailRef.errors?.['required']">Email is required.</small>
+      <small *ngIf="emailRef.errors?.['email']">Enter a valid email address.</small>
+    </div>
+  </div>
+
+  <!-- Password Field -->
+  <div class="form-group">
+    <div class="input-icon">
+      <i class="fas fa-lock"></i>
+      <input
+        type="password"
+        placeholder="Password"
+        required
+        name="password"
+        [(ngModel)]="password"
+        #passRef="ngModel"
+      />
+      <span class="error-icon" *ngIf="passRef.invalid && passRef.touched">
+        <i class="fas fa-exclamation-circle"></i>
+      </span>
+    </div>
+    <div class="error-text" *ngIf="passRef.invalid && passRef.touched">
+      <small>Password is required.</small>
+    </div>
+  </div>
+
+<button type="submit" class="login-btn" [disabled]="loginForm.invalid">Login</button>
+</form>
+
 
     <div class="divider">OR</div>
 
@@ -38,3 +74,55 @@
     </div>
   </div>
 </div>
+
+
+
+
+<!-- 
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm" novalidate>
+
+  <div class="form-group input-wrapper">
+    <i class="fas fa-envelope input-left-icon"></i>
+    <input
+      type="email"
+      name="email"
+      required
+      [(ngModel)]="email"
+      #emailRef="ngModel"
+      placeholder="Email address"
+      class="form-control"
+      [ngClass]="{ 'has-error': emailRef.invalid && emailRef.touched }"
+      autocomplete="username"
+    />
+    <i class="fas fa-exclamation-circle error-icon text-danger" *ngIf="emailRef.invalid && emailRef.touched"></i>
+    <div class="error-text" *ngIf="emailRef.invalid && emailRef.touched">
+      <small *ngIf="emailRef.errors?.['required']">Email is required.</small>
+      <small *ngIf="emailRef.errors?.['email']">Enter a valid email.</small>
+    </div>
+  </div>
+
+  <div class="form-group input-wrapper">
+    <i class="fas fa-lock input-left-icon"></i>
+    <input
+      type="password"
+      name="password"
+      required
+      [(ngModel)]="password"
+      #passRef="ngModel"
+      placeholder="Password"
+      class="form-control"
+      [ngClass]="{ 'has-error': passRef.invalid && passRef.touched }"
+      autocomplete="current-password"
+    />
+    <i class="fas fa-exclamation-circle error-icon text-danger" *ngIf="passRef.invalid && passRef.touched"></i>
+    <div class="error-text" *ngIf="passRef.invalid && passRef.touched">
+      <small>Password is required.</small>
+    </div>
+  </div>
+
+
+  <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">
+    <i class="fas fa-sign-in-alt me-2"></i>Login
+  </button>
+</form>
+ -->

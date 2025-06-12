@@ -1,14 +1,47 @@
+.input-icon i.fas.fa-envelope,
+.input-icon i.fas.fa-lock {
+  color: white;
+}
+
+.error-icon {
+  position: absolute;
+  right: 40px;
+  top:50%;
+  font-size: 1rem;
+  pointer-events: none;
+}
+.error-icon i.fas.fa-exclamation-circle {
+  color: rgb(235, 111, 111);
+}
+
+.error-text {
+  margin-top: -10px;
+  color: #dc3545;
+  font-size: 0.75rem;
+  text-align: left;
+
+}
+
+// -------------for disable button--------
+
+// .login-btn:disabled {
+//   background-color: #ccc;
+//   cursor: not-allowed;
+//   opacity: 0.7;
+// } 
+
+//  ---------------------------------------
+
 .login-container {
- margin-top:20px;
-  // background-color: #0d0d0d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+height: 38em;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .login-box {
   background: #1a1a1a;
-  padding:18px 40px;
+  padding:1px 40px 8px;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
   width: 100%;
@@ -119,4 +152,26 @@ form {
   .social-btn:hover {
     opacity: 0.9;
   }
+}
+
+
+
+@media(max-width:425px)
+{
+  .social-buttons {
+    display: flex;
+    justify-content: space-around;
+    /* gap: 12px; */
+    margin: 0 -20px;
+}
+}
+
+@media(max-width:320px)
+{
+  .social-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 -36px;
+    gap:0
+}
 }
