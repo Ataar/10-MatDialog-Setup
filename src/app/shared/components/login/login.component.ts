@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit{
   onLogin() {
     if (this.loginForm.valid) {
       // handle login
+       console.log("Form Submitted", this.loginForm.value);
       console.log('Email:', this.email);
       console.log('Password:', this.password);
       this.router.navigate(['/users']);
