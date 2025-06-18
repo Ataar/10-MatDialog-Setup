@@ -1,81 +1,223 @@
-<div class="wrapper" *ngIf="userdata; else noUser">
-  <div class="user-card text-white">
-    <img
-      [src]="userdata.avatar"
-      [alt]="userdata.username + ' avatar'"
-      class="rounded-circle user-avatar"
-    />
+<div class="avatar-wrapper text-center" *ngIf="userdata">
+  <!-- Avatar Image -->
+  <img
+    *ngIf="userdata.avatar && userdata.avatar !== 'assets/default-avatar.png'"
+    [src]="userdata.avatar"
+    alt="Profile picture"
+    class="profile-avatar"
+    (click)="toggleOptions()"
+  />
 
-    <div class="user-details">
-      <h3 class="user-name">{{ userdata.username }}</h3>
-      <span (click)="handleRoleClick(userdata)" class="user-role"><span>{{ userdata.userRole }}</span></span>
+  <!-- Username -->
+  <h3 class="username mt-2" *ngIf="userdata.username">{{ userdata.username }}</h3>
+   
 
-      <p><strong>Email : </strong> {{ userdata.email }}</p>
-      <p><strong>Phone : </strong> {{ userdata.phone }}</p>
-      <p><strong>Location : </strong> {{ userdata.location }}</p>
-      <!-- <p><strong>Joined : </strong> {{ userdata.joinedDate | date:'mediumDate' }}</p> -->
+     <!-- Edit Button -->
+  <div class="edit-button-container mb-3">
+    <button class="edit-button" (click)="toggleOptions()">
+      <i class="fas fa-pen"></i> Edit Profile
+    </button>
 
-
-
-<div *ngIf="getJoinLabelAndValue(userdata) as joinInfo">
-  <ng-container *ngIf="joinInfo.label === 'Joined on'; else normalText">
-    <p><strong>{{ joinInfo.label }} : </strong> {{ joinInfo.value | date: 'dd MMM , yyyy' }}</p>
-  </ng-container>
-
-  <ng-template #normalText>
-    <p><strong>{{ joinInfo.label }} : </strong> {{ joinInfo.value }}</p>
-  </ng-template>
-</div>
-
-
-
-      <div class="user-skills">
-        <h4 class="userSkill">Skills</h4>
-        <ul>
-          <li *ngFor="let skill of userdata.skills">{{ skill }}</li>
-        </ul>
+    <!-- Dropdown Menu -->
+    <div class="avatar-dropdown" *ngIf="showOptions">
+      <div class="dropdown-item" (click)="triggerFileInput()">
+        <i class="fas fa-upload"></i> Upload a Photo...
       </div>
-
-      <div class="user-social">
-        <h4 class="social01"><span class="sText">Connect</span></h4>
-      <a *ngIf="userdata.social?.linkedin" [href]="userdata.social.linkedin" target="_blank" rel="noopener noreferrer">
-  <svg class="social-icon" width="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-  </svg>
-</a>
-   <a *ngIf="userdata.social?.github" [href]="userdata.social.github" target="_blank" rel="noopener noreferrer">
-  <svg class="social-icon" width="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 0c-6.627 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.332-1.758-1.332-1.758-1.09-.745.083-.73.083-.73 1.205.084 1.838 1.238 1.838 1.238 1.07 1.835 2.809 1.305 3.491.996.108-.775.42-1.306.762-1.605-2.665-.3-5.464-1.332-5.464-5.93 0-1.31.465-2.382 1.235-3.22-.135-.303-.54-1.523.124-3.178 0 0 1.005-.322 3.3-.996.963-.26 1.98-.388 3-.393 1.02.005 2.037.133 3 .393 2.295.674 3.295.996 3.295.996.666 1.655.26 2.875.125 3.178.77.838 1.235 1.91 1.235 3.22 0 4.61-2.804 5.624-5.475 5.922.43.37.823 1.102.823 2.222 0 1.606-.015 2.895-.015 3.286 0 .315.215.69.825.576c4.766-1.59 8.204-6.084 8.204-11.383c0-6.627-5.373-12-12-12z"/>
-  </svg>
-</a>
-
+      <div class="dropdown-item text-danger" (click)="onRemove()">
+        <i class="fas fa-trash"></i> Remove Photo
       </div>
     </div>
   </div>
+
+  <!-- Extended User Details -->
+ <div class="user-details">
+  <p class="role">{{ userdata.userRole }}</p>
+<p class="location" *ngIf="userdata.location">
+  <i class="fas fa-map-marker-alt"></i>
+  {{ userdata.location.split('Udgir')[0] }}
+</p>
+<!-- <p class="location" *ngIf="userdata.location">
+  Udgir{{ userdata.location.split('Udgir')[1] }}
+</p> -->
+
+ <span class="contact" *ngIf="userdata.phone">Contact :- {{ userdata.phone }}</span>
+
+  <p class="experience" *ngIf="userdata.experience">
+    <i class="fas fa-clock"></i> {{ userdata.experience }}
+  </p>
+
+  <!-- <p class="skills" *ngIf="userdata.skills?.length">
+    <i class="fas fa-tools"></i> Skills:
+    <span *ngFor="let skill of userdata.skills; let isLast = last">
+      {{ skill }}<span *ngIf="!isLast">, </span>
+    </span>
+  </p> -->
+
+<div *ngIf="userdata.skills?.length">
+  <div class="skill-wrapper">
+    <i  class="fas fa-tools p-2"></i> Skills
+  </div>
+
+  <div class="chip-container">
+    <mat-chip-list aria-label="User skills" class="skill-chips">
+      <mat-chip *ngFor="let skill of userdata.skills" color="primary" selected>
+        {{ skill }}
+      </mat-chip>
+    </mat-chip-list>
+  </div>
 </div>
 
-<ng-template #noUser>
-  <div class="wrapper">
-    <p class="no-user">User data not available.</p>
+<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d236.62902825202917!2d77.11795056134575!3d18.389917563801692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcfabc94f4a8b95%3A0xcbde9509bdbb3c6e!2sAyesha%20Mobile%20Shop!5e0!3m2!1sen!2sin!4v1749843310932!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+
+</div>
+
+
+
+
+  <!-- Hidden File Input -->
+  <input
+    type="file"
+    accept="image/*"
+    style="display: none"
+    #fileInput
+    (change)="onFileSelected($event)"
+  />
+</div>
+
+
+
+
+
+
+<!-- ############################################################################### -->
+
+
+<!-- <div class="profile-wrapper" *ngIf="userdata">
+  <div class="avatar-container" (mouseenter)="hover = true" (mouseleave)="hover = false">
+    <img
+      [src]="userdata.avatar"
+      alt="Profile picture"
+      class="profile-avatar"
+      (click)="toggleOptions()"
+    />
+
+    <div class="avatar-overlay" *ngIf="hover || showOptions">
+      <button class="edit-button" (click)="toggleOptions()">
+        <i class="fas fa-pen"></i> Edit
+      </button>
+    </div>
+
+    <input
+      type="file"
+      id="avatarInput"
+      accept="image/*"
+      hidden
+      (change)="onImageChange($event)"
+    />
+
+    <div class="avatar-dropdown" *ngIf="showOptions">
+      <label for="avatarInput" class="dropdown-item">
+        <i class="fas fa-upload"></i> Upload a photo…
+      </label>
+
+      <div class="dropdown-item text-danger" (click)="removePhoto()">
+        <i class="fas fa-trash"></i> Remove photo
+      </div>
+    </div>
   </div>
-</ng-template>
 
-<!-- <section aria-label="Contact and Location Details"> -->
-<!-- <span class="user-role"><span>{{ userdata.userRole }}</span></span> -->
+  <h4 class="profile-label">Profile Picture</h4>
+</div>
+ -->
 
-    <!-- <dl class="user-meta">
-      <div class="meta-item">
-         -->
-        <!-- <dt class="visually-hidden">Email</dt> -->
-        <!-- <dd><strong> Email : </strong> {{ userdata.email }}</dd> -->
-      <!-- </div>
-      <div class="meta-item"> -->
-        <!-- <dt class="visually-hidden">Phone</dt> -->
-        <!-- <dd><strong> Phone : </strong> {{ userdata.phone }}</dd> -->
-      <!-- </div> -->
-      <!-- <div class="meta-item"> -->
-        <!-- <dt class="visually-hidden">Location</dt> -->
-        <!-- <dd><strong> Location : </strong> {{ userdata.location }}</dd> -->
-      <!-- </div> -->
-    <!-- </dl>
-  </section> -->
+
+<!-- ############################################################################### -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ------------------------------------------------------------------------------ -->
+
+<!-- with Camera -->
+
+
+<!-- <div class="profile-wrapper" *ngIf="userdata">
+  <div class="avatar-container">
+    <img
+      [src]="capturedImage || userdata.avatar"
+      alt="Profile picture"
+      class="profile-avatar"
+    /> -->
+
+    <!-- Hover Edit Button -->
+    <!-- <div class="avatar-overlay">
+      <button class="edit-button" (click)="toggleOptions()">
+        <i class="fas fa-pen"></i> Edit
+      </button>
+    </div> -->
+
+    <!-- File input -->
+    <!-- <input
+      type="file"
+      id="avatarInput"
+      accept="image/*"
+      hidden
+      (change)="onImageChange($event)"
+    /> -->
+
+    <!-- Dropdown Options -->
+    <!-- <div class="avatar-dropdown" *ngIf="showOptions">
+      <label for="avatarInput" class="dropdown-item">
+        <i class="fas fa-upload"></i> Upload a photo…
+      </label> -->
+
+      <!-- <div class="dropdown-item" (click)="startCamera()">
+        <i class="fas fa-camera"></i> Take a photo
+      </div> -->
+
+      <!-- <div class="dropdown-item text-danger" (click)="removePhoto()">
+        <i class="fas fa-trash"></i> Remove photo
+      </div>
+    </div>
+  </div>
+
+  <h4 class="profile-label">Profile Picture</h4>
+</div> -->
+
+<!-- Camera Section -->
+<!-- <div class="camera-wrapper" *ngIf="showCamera">
+  <video #video autoplay></video>
+  <div class="camera-actions">
+    <button mat-stroked-button color="primary" (click)="capturePhoto()">📸 Capture</button>
+    <button mat-stroked-button color="warn" (click)="cancelCamera()">Cancel</button>
+  </div>
+  <canvas #canvas hidden></canvas>
+</div> -->
+
+<!-- Captured Preview (Optional) -->
+<!-- <div *ngIf="capturedImage && !showCamera" class="preview-wrapper">
+  <h5>Preview:</h5>
+  <img [src]="capturedImage" class="captured-preview" />
+</div> -->

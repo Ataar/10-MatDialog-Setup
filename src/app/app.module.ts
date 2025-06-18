@@ -20,7 +20,7 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './shared/components/user/user.component';
 import { UserFormComponent } from './shared/components/user-form/user-form.component';
-
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,8 @@ import { UserFormComponent } from './shared/components/user-form/user-form.compo
     MatTooltipModule,
     ReactiveFormsModule,
     MatDialogModule,
-   HttpClientModule,    
+   HttpClientModule, 
+   MatChipsModule   
   ],
   providers: [],
   bootstrap: [AppComponent]
