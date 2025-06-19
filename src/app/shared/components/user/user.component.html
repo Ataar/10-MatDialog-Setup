@@ -104,7 +104,8 @@
           <input
             *ngIf="isEditingAbout"
             [(ngModel)]="newAbout"
-            maxlength=""
+             rows="2"
+             maxlength="139"
             (keydown.enter)="saveAbout()"
           />
           <span *ngIf="!isEditingAbout">{{
@@ -117,6 +118,7 @@
             <i class="material-icons">{{ isEditingAbout ? "done" : "edit" }}</i>
           </button>
         </div>
+        <small *ngIf="isEditingAbout">{{ newAbout.length }}/140</small>
       </div>
     </div>
   </div>

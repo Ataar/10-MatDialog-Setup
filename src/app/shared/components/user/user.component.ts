@@ -157,6 +157,21 @@ saveName() {
     this.userdata.userRole = this.newAbout;
     this.isEditingAbout = false;
   }
+// onAboutChange(value: string): void {
+//   // Remove all existing line breaks first
+//   const cleaned = value.replace(/\n/g, '');
+
+//   // Insert a new line every 35 characters
+//   const chunked = cleaned.match(/.{1,35}/g)?.join('\n') || '';
+
+//   this.newAbout = chunked;
+// }
+
+
+// onAboutChange(value: string): void {
+//   const cleaned = value.replace(/\n/g, '');
+//   this.newAbout = cleaned.match(/.{1,35}/g)?.join('\n') || cleaned;
+// }
 
 
 }
