@@ -22,6 +22,8 @@ import { UserComponent } from './shared/components/user/user.component';
 import { UserFormComponent } from './shared/components/user-form/user-form.component';
 import { MatChipsModule } from '@angular/material/chips';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,8 @@ import { MatChipsModule } from '@angular/material/chips';
     ReactiveFormsModule,
     MatDialogModule,
    HttpClientModule, 
-   MatChipsModule   
+   MatChipsModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

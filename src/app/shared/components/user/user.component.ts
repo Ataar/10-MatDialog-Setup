@@ -13,6 +13,11 @@ export class UserComponent implements OnInit {
   userdata!: Iuser;
   showOptions = false;
 
+  isEditingName = false;
+  isEditingAbout = false
+  newName = '';
+  newAbout = '';
+
   constructor(
     private userservices: UsersService,
     private routes: ActivatedRoute
@@ -22,6 +27,8 @@ export class UserComponent implements OnInit {
     this.uId = this.routes.snapshot.params['userId'];
     this.userdata = this.userservices.getUserData(this.uId);
     console.log(this.userdata);
+      this.newName = this.userdata?.username || '';
+       this.newAbout = this.userdata?.userRole || '';
   }
 
   toggleOptions() {
@@ -134,6 +141,38 @@ cancelCamera() {
 }
 
 
+
+
+updateNameCount() {
+  if (this.newName.length > 25) {
+    this.newName = this.newName.slice(0, 25);
+  }
+}
+
+saveName() {
+  this.userdata.username = this.newName;
+  this.isEditingName = false;
+}
+//  saveAbout() {
+//     this.userdata.userRole = this.newAbout;
+//     this.isEditingAbout = false;
+//   }
+showEmojiPicker = false;
+
+
+toggleEmojiPicker() {
+  this.showEmojiPicker = !this.showEmojiPicker;
+}
+
+addEmoji(event: any) {
+  this.newAbout += event.emoji.native;
+}
+
+saveAbout() {
+  this.userdata.experience = this.newAbout;
+  this.isEditingAbout = false;
+  this.showEmojiPicker = false;
+}
 
 }
 
