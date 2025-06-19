@@ -16,7 +16,7 @@
           <div class="change-text">Change profile photo</div>
         </div>
       </div>
-
+         
       <!-- Avatar Options Dropdown -->
       <div class="profile-options" *ngIf="showOptions">
         <ul class="text-center">
@@ -41,9 +41,10 @@
         />
       </div>
     </div>
- <small class="contact" *ngIf="userdata.phone">Contact :- {{ userdata.phone }}</small>
-  </div>
-
+    <div class="phone-info mt-2 text-center">
+    <p class="label">{{userdata.phone}}</p></div>
+    </div>
+    
   <!-- Camera Capture -->
   <div *ngIf="showCamera" class="camera-overlay">
     <video #video autoplay playsinline></video>
@@ -62,7 +63,7 @@
   <!-- WhatsApp-style Profile Info Form -->
   <div class="row">
     <div class="col-md-4 offset-md-4">
-      <div class="wa-form mt-4">
+      <div class="wa-form">
         <!-- Name Section -->
         <p class="label">Your name</p>
         <div class="edit-row" [ngClass]="{ editing: isEditingName }">

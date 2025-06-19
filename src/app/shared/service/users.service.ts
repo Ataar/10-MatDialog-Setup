@@ -14,7 +14,7 @@ export class UsersService {
   avatar: "./assets/images/Ravi Niturkar.jpg",
   location: "Delhi, India",
   experience: "5+ years in teaching literature and grammar",
-
+  phone:'+91 97308 39873',
   skills: ["Grammar", "Literature", "Communication", "Classroom Management"]
 },
 
@@ -25,6 +25,7 @@ export class UsersService {
   avatar: "./assets/images/WhatsApp Image 2025-06-12 at 18.22.44_23e3a7c9.jpg",
   location: "Pune, India",
   experience: "2+ years experience in Angular & JavaScript",
+  phone:'+91 93078 10197',
   skills: ["Angular", "TypeScript", "HTML", "CSS", "Git", "Responsive Design"]
 },
 
@@ -35,6 +36,7 @@ export class UsersService {
     avatar: "assets/images/Aishwarya.jpg",
     location: "Bangalore, India",
     experience: "3+ years in UX/UI design",
+    phone:'+91 77670 64030',
     skills: ["Figma", "Adobe XD", "Prototyping", "User Research"]
   },
   {
@@ -44,7 +46,7 @@ export class UsersService {
     avatar: "assets/images/Rahul Niturkar",
     location: "Hyderabad, India",
     experience: "4+ years in Data Analysis",
-     phone:'',
+     phone:'+91 73879 21602',
     skills: ["Python", "SQL", "Power BI", "Excel"]
   },
 
@@ -56,6 +58,7 @@ export class UsersService {
     avatar: "./assets/images/Rohan",
     location: "Delhi, India",
     experience: "6+ years in Project Management",
+    phone:"+91 83084 40223",
     skills: ["Agile", "Scrum", "Jira", "Team Leadership"]
   },
 
@@ -66,7 +69,7 @@ export class UsersService {
   avatar: "./assets/images/WhatsApp Image 2025-06-13 at 21.25.44_e1995398.jpg",
   location: "Latur, India",
   experience: "Currently pursuing B.Pharm, Final Year",
-   
+   phone:'+91 90219 52196',
   skills: [
     "Anatomy",
     "Physiology",
