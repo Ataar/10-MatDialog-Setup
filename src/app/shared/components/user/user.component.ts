@@ -153,26 +153,11 @@ saveName() {
   this.userdata.username = this.newName;
   this.isEditingName = false;
 }
-//  saveAbout() {
-//     this.userdata.userRole = this.newAbout;
-//     this.isEditingAbout = false;
-//   }
-showEmojiPicker = false;
+ saveAbout() {
+    this.userdata.userRole = this.newAbout;
+    this.isEditingAbout = false;
+  }
 
-
-toggleEmojiPicker() {
-  this.showEmojiPicker = !this.showEmojiPicker;
-}
-
-addEmoji(event: any) {
-  this.newAbout += event.emoji.native;
-}
-
-saveAbout() {
-  this.userdata.experience = this.newAbout;
-  this.isEditingAbout = false;
-  this.showEmojiPicker = false;
-}
 
 }
 

@@ -8,10 +8,10 @@ import { Observable, of } from 'rxjs';
 export class UsersService {
   userArr: Array<Iuser> = [
  {
-  username: "Meena Sharma",
+  username: "Ravi Niturkar",
   userId: "101",
-  userRole: "English Teacher",
-  avatar: "https://randomuser.me/api/portraits/women/1.jpg",
+  userRole: `"Success demands singleness of purpose. You need to be doing fewer things for more effect instead of doing more things with side effects."`,
+  avatar: "./assets/images/Ravi Niturkar.jpg",
   location: "Delhi, India",
   experience: "5+ years in teaching literature and grammar",
 
@@ -21,7 +21,7 @@ export class UsersService {
     {
   username: "Faisal Shaikh",
   userId: "102",
-  userRole: "Frontend Developer",
+  userRole: "Lab Technician & Owner of Sahara Laboratory",
   avatar: "./assets/images/WhatsApp Image 2025-06-12 at 18.22.44_23e3a7c9.jpg",
   location: "Pune, India",
   experience: "2+ years experience in Angular & JavaScript",
@@ -29,19 +29,19 @@ export class UsersService {
 },
 
   {
-    username: "Sana Ali",
+    username: "Aishwarya K",
     userId: "103",
     userRole: "UI/UX Designer",
-    avatar: "https://randomuser.me/api/portraits/women/3.jpg",
+    avatar: "assets/images/Aishwarya.jpg",
     location: "Bangalore, India",
     experience: "3+ years in UX/UI design",
     skills: ["Figma", "Adobe XD", "Prototyping", "User Research"]
   },
   {
-    username: "Amit Joshi",
+    username: "Rahul Niturkar",
     userId: "104",
-    userRole: "Data Analyst",
-    avatar: "https://randomuser.me/api/portraits/men/4.jpg",
+    userRole: `हमारे "आदर्श" बदलते हैं तो हमारे "विचार" बदलते हैं। "विचार" बदलते हैं तो "सोचने का तरीका" बदल जाता है।`,
+    avatar: "assets/images/Rahul Niturkar",
     location: "Hyderabad, India",
     experience: "4+ years in Data Analysis",
      phone:'',
@@ -50,10 +50,10 @@ export class UsersService {
 
 
   {
-    username: "Priya Verma",
+    username: "Rohan",
     userId: "105",
-    userRole: "Project Manager",
-    avatar: "https://randomuser.me/api/portraits/women/5.jpg",
+    userRole: "Let me introduce..",
+    avatar: "./assets/images/Rohan",
     location: "Delhi, India",
     experience: "6+ years in Project Management",
     skills: ["Agile", "Scrum", "Jira", "Team Leadership"]
@@ -62,7 +62,7 @@ export class UsersService {
 {
   username: "Drx. Kamran Khan",
   userId: "106",
-  userRole: "Pharmacy Student",
+  userRole: "I AM NOT ALONE ALLAH ALWAYS WITH ME.☝️",
   avatar: "./assets/images/WhatsApp Image 2025-06-13 at 21.25.44_e1995398.jpg",
   location: "Latur, India",
   experience: "Currently pursuing B.Pharm, Final Year",
@@ -101,12 +101,12 @@ export class UsersService {
   ]
 },
 {
-  username: "Toufiq Shaikh",
+  username: "BT19CIV097 Aslam Saudagar",
   userId: "109",
-  userRole: "Lab Technician & Owner of Sahara Laboratory",
-  avatar: "./assets/images/WhatsApp Image 2025-06-12 at 18.22.44_23e3a7c9.jpg", // Replace with real image URL if available
+  userRole: "",
+  avatar: "assets/images/Aslam Saudagar", // Replace with real image URL if available
   location: "अज़ीजा हॉस्पिटल, खादरी फंक्शन हॉल समोर, उदगीर",
-  phone: "8999188338 / 93078 10197" ,
+  phone: "+91 95611 93088" ,
   experience: "5+ वर्षांचा रक्त, लघवी व थुंकी तपासणीचा अनुभव",
   skills: [
     "रक्त तपासणी",
