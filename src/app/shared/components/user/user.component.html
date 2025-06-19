@@ -1,137 +1,56 @@
-<div class="avatar-wrapper text-center" *ngIf="userdata">
-  <!-- Avatar Image -->
-  <img
-    *ngIf="userdata.avatar && userdata.avatar !== 'assets/default-avatar.png'"
-    [src]="userdata.avatar"
-    alt="Profile picture"
-    class="profile-avatar"
-    (click)="toggleOptions()"
-  />
 
-  <!-- Username -->
-  <h3 class="username mt-2" *ngIf="userdata.username">{{ userdata.username }}</h3>
-   
-
-     <!-- Edit Button -->
-  <div class="edit-button-container mb-3">
-    <button class="edit-button" (click)="toggleOptions()">
-      <i class="fas fa-pen"></i> Edit Profile
-    </button>
-
-    <!-- Dropdown Menu -->
-    <div class="avatar-dropdown" *ngIf="showOptions">
-      <div class="dropdown-item" (click)="triggerFileInput()">
-        <i class="fas fa-upload"></i> Upload a Photo...
+<div class="avatar-wrapper" *ngIf="userdata">
+  <!-- Avatar -->
+  <div class="avatar-hover-wrapper" (click)="toggleOptions()">
+    <img
+      *ngIf="userdata.avatar"
+      [src]="userdata.avatar"
+      alt=""
+      class="profile-avatar"
+    />
+    <div class="avatar-overlay">
+      <div class="icon">
+        <i class="fas fa-image"></i>
       </div>
-      <div class="dropdown-item text-danger" (click)="onRemove()">
-        <i class="fas fa-trash"></i> Remove Photo
-      </div>
+      <div class="change-text">Change profile photo</div>
     </div>
-  </div>
+  </div>p;
 
-  <!-- Extended User Details -->
- <div class="user-details">
-  <p class="role">{{ userdata.userRole }}</p>
-<p class="location" *ngIf="userdata.location">
-  <i class="fas fa-map-marker-alt"></i>
-  {{ userdata.location.split('Udgir')[0] }}
-</p>
-<!-- <p class="location" *ngIf="userdata.location">
-  Udgir{{ userdata.location.split('Udgir')[1] }}
-</p> -->
+  <!-- Menu Dropdown -->
+  <div class="profile-options" *ngIf="showOptions">
+  <ul class="text-center">
+    <li (click)="viewPhoto()"><i class="fas fa-eye"></i> View photo</li>
+    <li (click)="takePhoto()"><i class="fas fa-camera"></i> Take photo</li>
+    <li (click)="fileInput.click()"><i class="fas fa-folder-open"></i> Upload photo</li>
+    <li class="divider"></li>
+    <li (click)="removePhoto()"><i class="fas fa-trash"></i> Remove photo</li>
+  </ul>
 
- <span class="contact" *ngIf="userdata.phone">Contact :- {{ userdata.phone }}</span>
-
-  <p class="experience" *ngIf="userdata.experience">
-    <i class="fas fa-clock"></i> {{ userdata.experience }}
-  </p>
-
-  <!-- <p class="skills" *ngIf="userdata.skills?.length">
-    <i class="fas fa-tools"></i> Skills:
-    <span *ngFor="let skill of userdata.skills; let isLast = last">
-      {{ skill }}<span *ngIf="!isLast">, </span>
-    </span>
-  </p> -->
-
-<div *ngIf="userdata.skills?.length">
-  <div class="skill-wrapper">
-    <i  class="fas fa-tools p-2"></i> Skills
-  </div>
-
-  <div class="chip-container">
-    <mat-chip-list aria-label="User skills" class="skill-chips">
-      <mat-chip *ngFor="let skill of userdata.skills" color="primary" selected>
-        {{ skill }}
-      </mat-chip>
-    </mat-chip-list>
-  </div>
-</div>
-
-<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d236.62902825202917!2d77.11795056134575!3d18.389917563801692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcfabc94f4a8b95%3A0xcbde9509bdbb3c6e!2sAyesha%20Mobile%20Shop!5e0!3m2!1sen!2sin!4v1749843310932!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-
-</div>
-
-
-
-
-  <!-- Hidden File Input -->
+  <!-- Hidden file input -->
   <input
     type="file"
     accept="image/*"
-    style="display: none"
     #fileInput
+    style="display: none"
     (change)="onFileSelected($event)"
   />
 </div>
 
+  <!-- Uses rear camera on mobile -->
+   
+<!-- CAMERA OVERLAY -->
+<div *ngIf="showCamera" class="camera-overlay">
+  <video #video autoplay playsinline></video>
+   <!-- Capture Icon -->
+ <div class="camera-controls">
+   <button class="capture-btn" (click)="capturePhoto()" title="Capture">
+    <i class="fa-solid fa-camera"></i> Capture</button>
 
+   <button class="cancel-btn" (click)="cancelCamera()" title="Cancel"> 
+    <i class="fas fa-times"></i> Cancel</button>
+ </div> 
 
-
-
-
-<!-- ############################################################################### -->
-
-
-<!-- <div class="profile-wrapper" *ngIf="userdata">
-  <div class="avatar-container" (mouseenter)="hover = true" (mouseleave)="hover = false">
-    <img
-      [src]="userdata.avatar"
-      alt="Profile picture"
-      class="profile-avatar"
-      (click)="toggleOptions()"
-    />
-
-    <div class="avatar-overlay" *ngIf="hover || showOptions">
-      <button class="edit-button" (click)="toggleOptions()">
-        <i class="fas fa-pen"></i> Edit
-      </button>
-    </div>
-
-    <input
-      type="file"
-      id="avatarInput"
-      accept="image/*"
-      hidden
-      (change)="onImageChange($event)"
-    />
-
-    <div class="avatar-dropdown" *ngIf="showOptions">
-      <label for="avatarInput" class="dropdown-item">
-        <i class="fas fa-upload"></i> Upload a photo…
-      </label>
-
-      <div class="dropdown-item text-danger" (click)="removePhoto()">
-        <i class="fas fa-trash"></i> Remove photo
-      </div>
-    </div>
-  </div>
-
-  <h4 class="profile-label">Profile Picture</h4>
 </div>
- -->
-
-
-<!-- ############################################################################### -->
 
 
 
@@ -142,82 +61,23 @@
 
 
 
+ <!-- <div class="camera-controls"> -->
+  <!-- Capture Icon -->
+  <!-- <button class="icon-btn capture-btn" (click)="capturePhoto()" title="Capture">
+    <i class="fas fa-camera"></i>
+  </button> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ------------------------------------------------------------------------------ -->
-
-<!-- with Camera -->
-
-
-<!-- <div class="profile-wrapper" *ngIf="userdata">
-  <div class="avatar-container">
-    <img
-      [src]="capturedImage || userdata.avatar"
-      alt="Profile picture"
-      class="profile-avatar"
-    /> -->
-
-    <!-- Hover Edit Button -->
-    <!-- <div class="avatar-overlay">
-      <button class="edit-button" (click)="toggleOptions()">
-        <i class="fas fa-pen"></i> Edit
-      </button>
-    </div> -->
-
-    <!-- File input -->
-    <!-- <input
-      type="file"
-      id="avatarInput"
-      accept="image/*"
-      hidden
-      (change)="onImageChange($event)"
-    /> -->
-
-    <!-- Dropdown Options -->
-    <!-- <div class="avatar-dropdown" *ngIf="showOptions">
-      <label for="avatarInput" class="dropdown-item">
-        <i class="fas fa-upload"></i> Upload a photo…
-      </label> -->
-
-      <!-- <div class="dropdown-item" (click)="startCamera()">
-        <i class="fas fa-camera"></i> Take a photo
-      </div> -->
-
-      <!-- <div class="dropdown-item text-danger" (click)="removePhoto()">
-        <i class="fas fa-trash"></i> Remove photo
-      </div>
-    </div>
-  </div>
-
-  <h4 class="profile-label">Profile Picture</h4>
+  <!-- Cancel Icon -->
+  <!-- <button class="icon-btn cancel-btn" (click)="cancelCamera()" title="Cancel">
+    <i class="fas fa-times"></i>
+  </button>
 </div> -->
 
-<!-- Camera Section -->
-<!-- <div class="camera-wrapper" *ngIf="showCamera">
-  <video #video autoplay></video>
-  <div class="camera-actions">
-    <button mat-stroked-button color="primary" (click)="capturePhoto()">📸 Capture</button>
-    <button mat-stroked-button color="warn" (click)="cancelCamera()">Cancel</button>
-  </div>
-  <canvas #canvas hidden></canvas>
-</div> -->
 
-<!-- Captured Preview (Optional) -->
-<!-- <div *ngIf="capturedImage && !showCamera" class="preview-wrapper">
-  <h5>Preview:</h5>
-  <img [src]="capturedImage" class="captured-preview" />
-</div> -->
+
+
+
+
+
+
+
