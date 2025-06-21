@@ -1,3 +1,4 @@
+
 <div class="profile-container" *ngIf="userdata">
   <!-- Avatar Section -->
   <div class="avatar-row">
@@ -60,6 +61,7 @@
 
   </div>
 
+
   <!-- WhatsApp-style Profile Info Form -->
   <div class="row">
     <div class="col-md-4 offset-md-4">
@@ -75,27 +77,35 @@
             (focus)="isEditingName = true"
             (input)="updateNameCount()"
           />
-          <span class="char-count" *ngIf="isEditingName">{{
-            25 - newName.length
-          }}</span>
-          <i class="material-icons emoji-icon">sentiment_satisfied_alt</i>
+          <span class="char-count" *ngIf="isEditingName">
+            {{ 25 - newName.length }}
+          </span>
+         <i
+  class="material-icons emoji-icon"
+  (click)="toggleEmojiPicker('name')"
+>
+  sentiment_satisfied_alt
+</i>
+
 
           <button class="save-btn" *ngIf="isEditingName" (click)="saveName()">
             <i class="material-icons">check</i>
           </button>
 
-          <button
-            class="edit-btn"
-            *ngIf="!isEditingName"
-            (click)="isEditingName = true"
-          >
+          <button class="edit-btn" *ngIf="!isEditingName" (click)="isEditingName = true">
             <i class="material-icons">edit</i>
           </button>
         </div>
 
+        <!-- ✅ Emoji Picker (for Name) -->
+        <emoji-picker
+          *ngIf="showEmojiPickerFor === 'name'"
+          (emoji-click)="addEmoji($event)"
+          class="emoji-dropdown"
+        ></emoji-picker>
+
         <p class="note">
-          This is not your username or PIN. This name will be visible to your
-          WhatsApp contacts.
+          This is not your username or PIN. This name will be visible to your WhatsApp contacts.
         </p>
 
         <!-- About Section -->
@@ -104,20 +114,33 @@
           <input
             *ngIf="isEditingAbout"
             [(ngModel)]="newAbout"
-             rows="2"
-             maxlength="139"
+            maxlength="139"
             (keydown.enter)="saveAbout()"
           />
-          <span *ngIf="!isEditingAbout">{{
-            userdata.userRole || "Hey there! I am using WhatsApp."
-          }}</span>
+        <i
+  class="material-icons emoji-icon"
+  (click)="toggleEmojiPicker('about')"
+>
+  sentiment_satisfied_alt
+</i>
 
-          <button
-            (click)="isEditingAbout ? saveAbout() : (isEditingAbout = true)"
-          >
+
+          <span *ngIf="!isEditingAbout">
+            {{ userdata.userRole || "Hey there! I am using WhatsApp." }}
+          </span>
+
+          <button (click)="isEditingAbout ? saveAbout() : (isEditingAbout = true)">
             <i class="material-icons">{{ isEditingAbout ? "done" : "edit" }}</i>
           </button>
         </div>
+
+        <!-- ✅ Emoji Picker (for About) -->
+        <emoji-picker
+          *ngIf="showEmojiPickerFor === 'about'"
+          (emoji-click)="addEmoji($event)"
+          class="emoji-dropdown"
+        ></emoji-picker>
+
         <small *ngIf="isEditingAbout">{{ newAbout.length }}/140</small>
       </div>
     </div>

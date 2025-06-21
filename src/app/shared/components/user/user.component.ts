@@ -172,6 +172,27 @@ saveName() {
 //   const cleaned = value.replace(/\n/g, '');
 //   this.newAbout = cleaned.match(/.{1,35}/g)?.join('\n') || cleaned;
 // }
+showEmojiPickerFor: 'name' | 'about' | null = null;
+
+toggleEmojiPicker(section: 'name' | 'about') {
+  this.showEmojiPickerFor = this.showEmojiPickerFor === section ? null : section;
+}
+
+addEmoji(event: any) {
+  const emoji = event.detail?.unicode;
+
+  if (!emoji) return;
+
+  if (this.showEmojiPickerFor === 'name') {
+    this.newName = (this.newName || '') + emoji;
+  } else if (this.showEmojiPickerFor === 'about') {
+    this.newAbout = (this.newAbout || '') + emoji;
+  }
+
+  // Close the picker after selection
+  this.showEmojiPickerFor = null;
+}
+
 
 
 }
