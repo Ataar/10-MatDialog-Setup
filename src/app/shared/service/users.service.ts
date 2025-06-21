@@ -104,12 +104,12 @@ export class UsersService {
   ]
 },
 {
-  username: "Nikhil",
+  username: "BT19CIV097 Aslam Saudagar",
   userId: "109",
   userRole: "",
-  avatar: "assets/images/altaf", // Replace with real image URL if available
+  avatar: "assets/images/Aslam Saudagar", // Replace with real image URL if available
   location: "अज़ीजा हॉस्पिटल, खादरी फंक्शन हॉल समोर, उदगीर",
-  phone: "" ,
+  phone: "+91 95611 93088" ,
   experience: "5+ वर्षांचा रक्त, लघवी व थुंकी तपासणीचा अनुभव",
   skills: [
     "रक्त तपासणी",
