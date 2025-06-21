@@ -222,6 +222,11 @@
   margin-bottom: 8px;
 }
 
+.row
+{
+  margin-top: 50px;
+}
+
 .edit-row {
   display: flex;
   align-items: center;
@@ -269,9 +274,16 @@
   }
 }
 
-.char-count {
-  font-size: 12px;
-  color: #aaa;
+// span.char-count {
+//     position: absolute;
+//     top: 42px;
+//     right: 49px;
+   
+// }
+span.char-count {
+    position: absolute;
+    top: 15px;
+    right: 40px;
 }
 
 // .emoji-icon {
@@ -288,10 +300,32 @@
 }
 
 
+// i.material-icons.emoji-icon {
+//     position: absolute;
+//     right: 30px;
+//      cursor: pointer;
+//      padding: 40px;
+//       color: white;
+// }
+.emoji-dropdown {
+  position: absolute;
+  z-index: 999;
+  margin-top: 5px;
+}
+.edit-row {
+  position: relative;
+}
+
 i.material-icons.emoji-icon {
     position: absolute;
     right: 30px;
-     cursor: pointer;
-     padding: 40px;
+    cursor: pointer;
+    padding: 40px;
+    color: white;
+    top: -29px;
 }
-
+.emoji-dropdown {
+    position: absolute;
+    z-index: 999;
+    margin-top: 482px;
+}

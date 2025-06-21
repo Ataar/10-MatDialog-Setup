@@ -144,8 +144,8 @@ cancelCamera() {
 
 
 updateNameCount() {
-  if (this.newName.length > 25) {
-    this.newName = this.newName.slice(0, 25);
+  if (this.newName.length < 35) {
+    this.newName = this.newName.slice(0, 35);
   }
 }
 
@@ -172,60 +172,33 @@ saveName() {
 //   const cleaned = value.replace(/\n/g, '');
 //   this.newAbout = cleaned.match(/.{1,35}/g)?.join('\n') || cleaned;
 // }
+// Emoji logic (no longer needed if emoji picker is removed)
 showEmojiPickerFor: 'name' | 'about' | null = null;
 
-toggleEmojiPicker(section: 'name' | 'about') {
+// toggleEmojiPicker(section: 'name' | 'about') {
+//   this.showEmojiPickerFor = this.showEmojiPickerFor === section ? null : section;
+// }
+toggleEmojiPicker(section: 'name' | 'about' | null) {
   this.showEmojiPickerFor = this.showEmojiPickerFor === section ? null : section;
 }
 
+
 addEmoji(event: any) {
   const emoji = event.detail?.unicode;
-
   if (!emoji) return;
 
   if (this.showEmojiPickerFor === 'name') {
-    this.newName = (this.newName || '') + emoji;
+    this.newName += emoji;
   } else if (this.showEmojiPickerFor === 'about') {
-    this.newAbout = (this.newAbout || '') + emoji;
+    this.newAbout += emoji;
   }
 
-  // Close the picker after selection
-  this.showEmojiPickerFor = null;
+  this.showEmojiPickerFor = null; // Auto close
 }
 
 
 
 }
-
-
-
-
-
-
-// export class UserComponent implements OnInit {
-//   uId!: string;
-//   userdata!: Iuser;
-
-// //  showOptions = false;
-//     constructor(
-//     private userservices: UsersService,
-//     private routes: ActivatedRoute
-//   ) {}
-
-//   ngOnInit(): void {
-//     this.uId = this.routes.snapshot.params['userId'];
-//     this.userdata = this.userservices.getUserData(this.uId);
-//     console.log(this.userdata);
-//   }
-
-//    toggleOptions() {
-//     // this.showOptions = !this.showOptions;
-//   }
-
-  
-// }
-
-
 
 
 
