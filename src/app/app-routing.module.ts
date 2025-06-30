@@ -5,24 +5,20 @@ import { UsersComponent } from './shared/components/users/users.component';
 import { ProductsComponent } from './shared/components/products/products.component';
 import { ProductFormComponent } from './shared/components/product-form/product-form.component';
 import { ProductComponent } from './shared/components/product/product.component';
-import { LoginComponent } from './shared/components/login/login.component';
 import { UserFormComponent } from './shared/components/user-form/user-form.component';
 import { UserComponent } from './shared/components/user/user.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-
-  // Auth
-  { path: 'login', component: LoginComponent, title: 'Login' },
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   // Dashboard
   { path: 'home', component: DashboardComponent, title: 'Dashboard' },
 
   // Users
-  { path: 'users', component: UsersComponent, title: 'Users List' },
-  { path: 'users/addUser', component: UserFormComponent, title: 'Add User' },
-  { path: 'users/:userId', component: UserComponent, title: 'View User' },
-  { path: 'users/:userId/edit', component: UserFormComponent, title: 'Edit User' },
+  { path: 'users', component: UsersComponent, title: 'Users List' }, // http://localhost:4200/users
+  { path: 'users/addUser', component: UserFormComponent, title: 'Add User' },// http://localhost:4200/users/adduser
+  { path: 'users/:userId', component: UserComponent, title: 'View User' }, // http://localhost:4200/users/id
+  { path: 'users/:userId/edit', component: UserFormComponent, title: 'Edit User' }, // http://localhost:4200/users/id/edit
 
   // Products
   { path: 'products', component: ProductsComponent, title: 'Products List' },

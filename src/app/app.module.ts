@@ -76,7 +76,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
-import { LoginComponent } from './shared/components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './shared/components/user/user.component';
 import { UserFormComponent } from './shared/components/user-form/user-form.component';
@@ -95,7 +94,6 @@ import 'emoji-picker-element';
     ProductComponent,
     ProductFormComponent,
     ConfirmDialogComponent,
-    LoginComponent,
     UserComponent,
     UserFormComponent,
   ],

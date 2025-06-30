@@ -1,207 +1,181 @@
-import { Component, ElementRef, OnInit, ViewChild, } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UsersService } from '../../service/users.service';
-import { ActivatedRoute } from '@angular/router';
-import { Iuser } from '../../models/users';
- import { HostListener } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
-  uId!: string;
-  userdata!: Iuser;
-  showOptions = false;
+export class UserComponent implements OnInit , OnDestroy {
 
-  isEditingName = false;
-  isEditingAbout = false
-  newName = '';
-  newAbout = '';
+  userId!: string;
+  avatar!: string;
+  userName!: string;
+  userSubscription !:Subscription
 
   constructor(
-    private userservices: UsersService,
-    private routes: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService: UsersService,
+    private router: Router
+  
   ) {}
 
   ngOnInit(): void {
-    this.uId = this.routes.snapshot.params['userId'];
-    this.userdata = this.userservices.getUserData(this.uId);
-    console.log(this.userdata);
-      this.newName = this.userdata?.username || '';
-       this.newAbout = this.userdata?.userRole || '';
-  }
+    this.userId = this.route.snapshot.params['userId'];
 
-  toggleOptions() {
-    this.showOptions = !this.showOptions;
-  }
-
-  uploadPhoto() {
-    alert('Upload photo clicked');
-    this.showOptions = false;
-  }
-
- viewPhoto() {
-    if (this.userdata.avatar) {
-      if (this.userdata.avatar.startsWith('data:image')) {
-        const win = window.open();
-        if (win) {
-          win.document.write(`
-            <html>
-              <head><title>Profile Photo</title></head>
-              <body style="margin:0; display:flex; justify-content:center; align-items:center; height:100vh; background:#000;">
-                <img src="${this.userdata.avatar}" style="max-width:50%; max-height:50%;" />
-              </body>
-            </html>
-          `);
-          win.document.close();
+    // Search user by ID from array
+    if(this.userId)
+    {
+      this.userService.getUserData(this.userId).subscribe(res=>{
+        if (res) {
+          this.avatar = res.avatar;
+          this.userName = res.name;
         }
-      } else {
-        window.location.href = this.userdata.avatar;
-      }
+
+      });
     }
-    this.showOptions = false;
-  }
-  
-
-
-  removePhoto() {
-    this.userdata.avatar = 'assets/default-avatar.png'; // or null
-    this.showOptions = false;
-  }
-
- 
-  @HostListener('document:click', ['$event'])
-  onClickOutside(event: Event) {
-    const clickedInside = (event.target as HTMLElement).closest('.avatar-wrapper');
-    if (!clickedInside) {
-      this.showOptions = false;
-    }
+    
+      // this.route.params
+      // .subscribe((params:Params)=>{
+      //   console.log(params);
+      //  this.userId = params['userId']
+      //  this.userService.getUserData(this.userId).subscribe(res=>{
+      //    if (res) {
+      //    this.avatar = res.avatar;
+      //    this.userName = res.name;
+      //    }
+      //   })
+        
+      // });
+      
   }
 
-onFileSelected(event: Event) {
-  const input = event.target as HTMLInputElement;
 
-  if (input.files && input.files[0]) {
-    const file = input.files[0];
-    const reader = new FileReader();
+  ngOnDestroy(): void {
+    // if (this.userSubscription) check karega ki:
+    // Kya isme koi subscription object hai?
+   // Agar hai to safely unsubscribe karo.
+   // Agar nahi hai to kuch mat karo — program continue rahega, koi error nahi.
 
-    reader.onload = () => {
-      // Set preview as new avatar
-      this.userdata.avatar = reader.result as string;
-    };
 
-    reader.readAsDataURL(file); // Read file as base64
-  }
-
-  this.showOptions = false;
+   if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+   }
 }
 
-@ViewChild('video') videoRef!: ElementRef<HTMLVideoElement>;
-showCamera = false;
-private stream!: MediaStream;
 
-takePhoto() {
-  this.showCamera = true;
-
-  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } }).then(stream => {
-    this.stream = stream;
-    const video = this.videoRef.nativeElement;
-    video.srcObject = stream;
-    video.play();
-  }).catch(err => {
-    alert('Camera access denied or not supported.');
-    this.showCamera = false;
-  });
-
-  this.showOptions = false;
+goBack() {
+ this.router.navigate(['users']);
 }
 
-capturePhoto() {
-  const video = this.videoRef.nativeElement;
-  const canvas = document.createElement('canvas');
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
 
-  const context = canvas.getContext('2d');
-  if (context) {
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    const dataUrl = canvas.toDataURL('image/png');
-    this.userdata.avatar = dataUrl; // ✅ set as new avatar
-  }
-
-  // Stop camera stream
-  this.stream.getTracks().forEach(track => track.stop());
-  this.showCamera = false;
-}
-cancelCamera() {
-  if (this.stream) {
-    this.stream.getTracks().forEach(track => track.stop());
-  }
-  this.showCamera = false;
 }
 
 
 
 
-updateNameCount() {
-  if (this.newName.length < 35) {
-    this.newName = this.newName.slice(0, 35);
-  }
-}
 
-saveName() {
-  this.userdata.username = this.newName;
-  this.isEditingName = false;
-}
- saveAbout() {
-    this.userdata.userRole = this.newAbout;
-    this.isEditingAbout = false;
-  }
-// onAboutChange(value: string): void {
-//   // Remove all existing line breaks first
-//   const cleaned = value.replace(/\n/g, '');
 
-//   // Insert a new line every 35 characters
-//   const chunked = cleaned.match(/.{1,35}/g)?.join('\n') || '';
 
-//   this.newAbout = chunked;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -----------------------------------------------------------------------------------------
+
+
+
+
+
+
+// import { Component, OnInit } from '@angular/core';
+// import { ActivatedRoute } from '@angular/router';
+// import { Iuser } from '../../models/users';
+// import { UsersService } from '../../service/users.service';
+
+// @Component({
+//   selector: 'app-user',
+//   templateUrl: './user.component.html',
+//   styleUrls: ['./user.component.scss']
+// })
+// export class UserComponent implements OnInit {
+
+//   userInfo!: Iuser;
+
+//   constructor(private route: ActivatedRoute, private userService: UsersService) {}
+
+//   ngOnInit(): void {
+//     const id = this.route.snapshot.params['userId'];
+//     this.userInfo = this.userService.getUserData(id);
+//   }
 // }
-
-
-// onAboutChange(value: string): void {
-//   const cleaned = value.replace(/\n/g, '');
-//   this.newAbout = cleaned.match(/.{1,35}/g)?.join('\n') || cleaned;
-// }
-// Emoji logic (no longer needed if emoji picker is removed)
-showEmojiPickerFor: 'name' | 'about' | null = null;
-
-// toggleEmojiPicker(section: 'name' | 'about') {
-//   this.showEmojiPickerFor = this.showEmojiPickerFor === section ? null : section;
-// }
-toggleEmojiPicker(section: 'name' | 'about' | null) {
-  this.showEmojiPickerFor = this.showEmojiPickerFor === section ? null : section;
-}
-
-
-addEmoji(event: any) {
-  const emoji = event.detail?.unicode;
-  if (!emoji) return;
-
-  if (this.showEmojiPickerFor === 'name') {
-    this.newName += emoji;
-  } else if (this.showEmojiPickerFor === 'about') {
-    this.newAbout += emoji;
-  }
-
-  this.showEmojiPickerFor = null; // Auto close
-}
-
-
-
-}
-
-
-
-
-
 

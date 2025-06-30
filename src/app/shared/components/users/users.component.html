@@ -1,25 +1,60 @@
-<div class="container my-2">
-<h2 class="text-center fw-bold mb-4 text-uppercase"> Team Members</h2>
 
-  <div class="row g-4 justify-content-center">
-  <div class="col-md-6 col-lg-4 mt-4" *ngFor="let user of usersArr">
-  <div class="card border-0 shadow-lg rounded-4 h-100 text-center user-card"
-  (click)="goToUserDetails(user.userId)"
-   style="cursor: pointer;">
+<div class="row">
+  <div class="col-md-12 text-right mt-4">
+    <button mat-raised-button color="primary">Add User</button>
+  </div>
+</div>
 
-  <div class="card-body p-4">
-  <img
-  [src]="user.avatar"
-  alt="{{ user.username }}"
-  class="rounded-circle mb-3"
-  width="90"
-  height="90"/>
 
-  <h5 class="fw-semibold mb-2">{{ user.username }}</h5>
-          <!-- <div>{{ user.userRole }}</div> -->
+<div class="row mt-5">
+  <div class="col-md-4 offset-md-4">
+    <div class="card border-0">
+      <div class="card-header bg-success text-white text-center py-3">
+        <h4 class="mb-0">👥 User List</h4>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li [routerLink]="[user.id]"
+          *ngFor="let user of usersArr"
+          class="list-group-item d-flex justify-content-start align-items-center gap-3"
+        >
+          <div
+            class="avatar-circle bg-dark text-white d-flex align-items-center justify-content-center"
+          >
+            <i class="bi bi-person-fill fs-5"></i>
+            <img [src]="user.avatar" class="avatarImg" [alt]="user.name" />
+          </div>
 
+          <!-- <div class="avatar-circle d-flex align-items-center justify-content-center overflow-hidden">
+        <ng-container *ngIf="user.avatar; else showIcon">
+          <img [src]="user.avatar" [alt]="user.name" class="avatar-img" />
+        </ng-container>
+        <ng-template #showIcon>
+          <i class="bi bi-person-fill fs-4 text-white"></i>
+        </ng-template>
+      </div> -->
+
+          <span class="avatar-name">{{ user.name }}</span>
+        </li>
+      </ul>
+    </div>
   </div>
+</div>
+
+<!-- ########################################################################################### -->
+
+<!-- <div class="custom-container">
+  <div class="custom-card">
+    <div class="custom-header">
+      <h4>👥 User List</h4>
+    </div>
+    <ul class="user-list">
+      <li *ngFor="let user of usersArr" class="user-item">
+        <div class="avatar-circle">
+          <i class="bi bi-person-fill fs-5"></i>
+          <img [src]="user.avatar" class="avatarImg" alt="" />
+        </div>
+        <span class="user-name">{{ user.name }}</span>
+      </li>
+    </ul>
   </div>
-  </div>
-  </div>
-  </div>
+</div> -->
