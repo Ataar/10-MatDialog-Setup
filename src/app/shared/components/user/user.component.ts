@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../service/users.service';
 import { Subscription } from 'rxjs';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-user',
@@ -10,33 +13,45 @@ import { Subscription } from 'rxjs';
 })
 export class UserComponent implements OnInit , OnDestroy {
 
-  userId!: string;
+  id!: string;
   avatar!: string;
-  userName!: string;
+  name!: string;
+  role!:string;
+  email!:string;
+
   userSubscription !:Subscription
 
   constructor(
     private route: ActivatedRoute,
     private userService: UsersService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   
   ) {}
 
   ngOnInit(): void {
-    this.userId = this.route.snapshot.params['userId'];
+    this.id = this.route.snapshot.params['userId'];
 
     // Search user by ID from array
-    if(this.userId)
+    if(this.id)
     {
-      this.userService.getUserData(this.userId).subscribe(res=>{
+      this.userService.getUserData(this.id).subscribe(res=>{
         if (res) {
           this.avatar = res.avatar;
-          this.userName = res.name;
+          this.name = res.name;
+          this.role = res.role;
+          this.email = res.email;
         }
 
       });
+
+      
     }
-    
+
+    // note : - hum same component me hain aur url me param change ho rah hai to us time hum param
+    // observable use karte hain aur agar pram change na ho to snapshot.params object use karenge.
+
+        
       // this.route.params
       // .subscribe((params:Params)=>{
       //   console.log(params);
@@ -54,11 +69,11 @@ export class UserComponent implements OnInit , OnDestroy {
 
 
   ngOnDestroy(): void {
+    
     // if (this.userSubscription) check karega ki:
     // Kya isme koi subscription object hai?
    // Agar hai to safely unsubscribe karo.
    // Agar nahi hai to kuch mat karo — program continue rahega, koi error nahi.
-
 
    if (this.userSubscription) {
       this.userSubscription.unsubscribe();
@@ -71,9 +86,27 @@ goBack() {
 }
 
 
+
+onDelete() {
+   const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Confirm Delete',
+        message: 'Are you sure you want to delete this product?'
+      }
+    });
+  console.log('Deleted:', this.id);
+   dialogRef.afterClosed().subscribe(result => {
+  if(result)
+  {
+    this.userService.onDelete(this.id);
+
+  }
+})
+
+
 }
 
-
+}
 
 
 

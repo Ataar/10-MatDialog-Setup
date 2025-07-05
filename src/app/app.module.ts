@@ -60,7 +60,7 @@
 
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -83,6 +83,7 @@ import { MatChipsModule } from '@angular/material/chips';
 
 // ✅ Import the emoji-picker-element polyfill (add this in polyfills.ts instead if preferred)
 import 'emoji-picker-element';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import 'emoji-picker-element';
     ConfirmDialogComponent,
     UserComponent,
     UserFormComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,6 +111,7 @@ import 'emoji-picker-element';
     MatDialogModule,
     HttpClientModule,
     MatChipsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

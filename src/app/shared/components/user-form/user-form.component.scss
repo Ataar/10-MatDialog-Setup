@@ -1,54 +1,84 @@
-.wa-form {
-  background-color: #1f1f1f;
-  color: #fff;
-  padding: 20px;
-  font-family: "Segoe UI", sans-serif;
-  max-width: 500px;
-  margin: auto;
+.heading
+{
+    text-align: center;
+    display: block;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 20px;
+    font-style: italic;;
+    font-family: georgia;
 }
 
-.label {
-  font-size: 13px;
-  font-weight: 500;
+.form-card {
+background: #080818;
+// background: #1e1e2f;
+  border-radius: 15px;
+ padding: 40px;
+ margin: 0 60px;
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+ 
+}
+
+// .form-card:hover {
+//   transform: translateY(-5px);
+//   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+// }
+
+.card-body h3 {
+  font-weight: bold;
+}
+
+.form-control,
+.form-select {
+  background: #2b2b3d;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.form-control::placeholder {
   color: #aaa;
-  margin-bottom: 6px;
 }
 
-.info-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: transparent;
-  padding: 8px 0;
-  border-bottom: 1px solid #333;
+.form-control:focus,
+.form-select:focus {
+  border-color: #007bff;
+  box-shadow: none;
 }
 
-.info-row input {
-  background-color: transparent;
-  color: #fff;
-  border: none;
-  border-bottom: 1px solid #666;
-  outline: none;
-  flex: 1;
-  margin-right: 8px;
-  font-size: 16px;
+.btn {
+  font-weight: bold;
+
+}
+.mat-flat-button.mat-primary.mat-button-disabled,
+.mat-flat-button.mat-accent.mat-button-disabled,
+.mat-flat-button.mat-warn.mat-button-disabled,
+.mat-flat-button.mat-button-disabled.mat-button-disabled,
+.mat-raised-button.mat-primary.mat-button-disabled,
+.mat-raised-button.mat-accent.mat-button-disabled,
+.mat-raised-button.mat-warn.mat-button-disabled,
+.mat-raised-button.mat-button-disabled.mat-button-disabled,
+.mat-fab.mat-primary.mat-button-disabled,
+.mat-fab.mat-accent.mat-button-disabled,
+.mat-fab.mat-warn.mat-button-disabled,
+.mat-fab.mat-button-disabled.mat-button-disabled,
+.mat-mini-fab.mat-primary.mat-button-disabled,
+.mat-mini-fab.mat-accent.mat-button-disabled,
+.mat-mini-fab.mat-warn.mat-button-disabled,
+.mat-mini-fab.mat-button-disabled.mat-button-disabled {
+  background-color: rgba(117, 131, 125, 0.89);
+  color: rgb(255, 251, 251);
+
+}
+@media(max-width:425px)
+{
+.form-card {
+    background: #080818;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 0px 0px;
+}
 }
 
-.info-row span {
-  flex: 1;
-  font-size: 16px;
-  color: #fff;
-}
 
-.info-row button {
-  background: none;
-  border: none;
-  color: #aaa;
-  cursor: pointer;
-}
 
-.note {
-  font-size: 12px;
-  color: #888;
-  margin-top: 4px;
-}

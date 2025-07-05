@@ -24,7 +24,7 @@ product ! : Iproduct
   constructor(
     private routes: ActivatedRoute , // ActivatedRoute ye instance apko product ka id dega
     private prodsutsService : ProductsService,
-    private location : Location,
+    // private location : Location,
   private router: Router,
    private dialog: MatDialog
     

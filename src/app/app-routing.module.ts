@@ -7,12 +7,18 @@ import { ProductFormComponent } from './shared/components/product-form/product-f
 import { ProductComponent } from './shared/components/product/product.component';
 import { UserFormComponent } from './shared/components/user-form/user-form.component';
 import { UserComponent } from './shared/components/user/user.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
+  
   // { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+
 
   // Dashboard
   { path: 'home', component: DashboardComponent, title: 'Dashboard' },
+
+
 
   // Users
   { path: 'users', component: UsersComponent, title: 'Users List' }, // http://localhost:4200/users
@@ -20,15 +26,27 @@ const routes: Routes = [
   { path: 'users/:userId', component: UserComponent, title: 'View User' }, // http://localhost:4200/users/id
   { path: 'users/:userId/edit', component: UserFormComponent, title: 'Edit User' }, // http://localhost:4200/users/id/edit
 
+
+  
   // Products
   { path: 'products', component: ProductsComponent, title: 'Products List' },
   { path: 'products/addProduct', component: ProductFormComponent, title: 'Add Product' },
   { path: 'products/:pid', component: ProductComponent, title: 'View Product' },
   { path: 'products/:pid/edit', component: ProductFormComponent, title: 'Edit Product' },
 
+
+
   // 404 Fallback (Optional)
-  { path: '**', redirectTo: 'login' }
+   {
+    path:'admin',
+    component:PageNotFoundComponent
+   }
+  // { path: '**', redirectTo: 'login' }
+
+
 ];
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

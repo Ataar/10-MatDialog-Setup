@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Iuser } from '../../models/users';
-import { Router } from '@angular/router';
 import { UsersService } from '../../service/users.service';
 import { Subscription } from 'rxjs';
 
@@ -17,7 +16,7 @@ export class UsersComponent implements OnInit  , OnDestroy{
   constructor(
     // here UsersService will give the data that's why we injected it.
     private userService: UsersService,
-    private router: Router
+    
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +24,7 @@ export class UsersComponent implements OnInit  , OnDestroy{
   // so fetchAllUserdata method will return observable and to get data we have to subscribe
     this.unsubscribe = this.userService.fetchAllUserdata().subscribe(res => {
       this.usersArr = res;
-      console.log(this.usersArr);
+      // console.log(this.usersArr);
       
     });
   }

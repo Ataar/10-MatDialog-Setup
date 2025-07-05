@@ -1,21 +1,37 @@
 
 
-<div class="user-container" *ngIf="avatar && userName">
+<div class="user-container" *ngIf="avatar && name">
 <div class="profile-wrapper">
 
 <div class="go-back-btn ">
   <button mat-raised-button color="primary" (click)="goBack()">Back To List</button>
 </div>
 
+
+
 <div class="avatar-ring">
-<img src= {{avatar}} class="avatar-img" alt="Avatar" title= {{userName}}>
+  <div class="outer-circle"></div>
+  <img [src]="avatar" class="avatar-img" alt="Avatar" title="{{ name }}">
+</div> 
+
+  
+
+
+
+
+<h2 class="user-name text-white m-2">{{ name }}</h2>
+<div class="userDetails">
+  <h5>
+    {{role}}
+  </h5>
+  <span>{{email}}</span>
+
 </div>
+ 
 
-<h2 class="user-name text-white">{{ userName }}</h2>
-
-<div class="d-flex">
-<button mat-raised-button color="primary">Edit</button>
-<button mat-raised-button color="warn">Delete</button>
+<div class="card-footer border-white my-2  d-flex">
+<button routerLink="edit" mat-raised-button color="primary">Edit</button>
+<button (click)="onDelete()" mat-raised-button color="warn">Delete</button>
 </div>
 
 </div>

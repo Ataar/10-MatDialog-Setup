@@ -1,7 +1,8 @@
 export interface Iuser
 {
+
   
-  id:number;
+  id:string;
   name:string;
   email:string;
   role:string
