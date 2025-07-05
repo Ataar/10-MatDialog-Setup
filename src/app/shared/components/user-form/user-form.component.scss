@@ -82,3 +82,38 @@ background: #080818;
 
 
 
+::ng-deep .user-form-snackbar {
+
+  
+   background-color: #d4edda !important;
+  color: #155724 !important;
+   font-weight: 600;
+  font-family: Georgia !important;
+  display:flex !important;
+  justify-content: center;
+  align-items: center;
+  letter-spacing:2px;
+  font-family: Georgia !important;
+  // font-style: italic;
+}
+::ng-deep  .mat-simple-snackbar {
+  
+  font-size: 18px !important;
+}
+// ::ng-deep .user-form-snackbar {
+
+  
+//   background-color: #d4edda;
+//   color: #28a745;
+//   font-family: Georgia !important;
+//   display:flex !important;
+//   justify-content: center;
+//   align-items: center;
+//   letter-spacing:2px;
+//   font-family: Georgia !important;
+//   // font-style: italic;
+// }
+// ::ng-deep  .mat-simple-snackbar {
+  
+//   font-size: 18px !important;
+// }

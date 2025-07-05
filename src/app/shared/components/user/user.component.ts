@@ -4,6 +4,7 @@ import { UsersService } from '../../service/users.service';
 import { Subscription } from 'rxjs';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class UserComponent implements OnInit , OnDestroy {
     private route: ActivatedRoute,
     private userService: UsersService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private _snackBar:MatSnackBar
   
   ) {}
 
@@ -99,6 +101,7 @@ onDelete() {
   if(result)
   {
     this.userService.onDelete(this.id);
+    this._snackBar.open('Deleted Successfully!', '', { duration: 1000, horizontalPosition: 'center', verticalPosition: 'top',panelClass: 'user-delete-snackbar' });
 
   }
 })

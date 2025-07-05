@@ -159,9 +159,21 @@ border-left: 2px solid rgba(255, 165, 0, 0.9);   /* Orange */
     // box-shadow: 0 5px 10px rgba(255, 255, 255, 0.1);
 }
 
+::ng-deep .user-delete-snackbar {
+  color: rgb(10, 243, 60) !important;
+  font-family: Georgia !important;
+  display:flex !important;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 2px;
+}
 
 
+::ng-deep .mat-simple-snackbar
+{
+  font-size: 18px !important;
 
+}
 
 
 

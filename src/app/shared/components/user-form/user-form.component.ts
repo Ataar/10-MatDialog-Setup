@@ -67,6 +67,8 @@ export class UserFormComponent implements OnInit {
       console.log(newUser);
       this.userForm.reset()
       this.userService.addUser(newUser)
+      this._snackBar.open('User Added!', '', { duration: 1000, horizontalPosition: 'center', verticalPosition: 'top',panelClass: 'user-form-snackbar' });
+
       }
        
       else
@@ -76,13 +78,16 @@ export class UserFormComponent implements OnInit {
         
         this.userService.updateUser(updateUser)
         console.log(updateUser);
-        
+        this._snackBar.open('Changes saved successfully', '', { duration: 1000, horizontalPosition: 'center', verticalPosition: 'top', panelClass: 'user-form-snackbar' });
+
+}
+
     }
   }
 
   
 }
-}
+
 
 
 
