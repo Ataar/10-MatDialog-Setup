@@ -21,7 +21,7 @@
             class="avatar-circle bg-dark text-white d-flex align-items-center justify-content-center"
           >
             <i class="bi bi-person-fill fs-5"></i>
-            <img [src]="user.avatar" class="avatarImg" [alt]="user.name" />
+            <img  *ngIf="isValidImage(user.avatar)" [src]="user.avatar" class="avatarImg" [alt]="user.name" />
           </div>
 
           <!-- <div class="avatar-circle d-flex align-items-center justify-content-center overflow-hidden">

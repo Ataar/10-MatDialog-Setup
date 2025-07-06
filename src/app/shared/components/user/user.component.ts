@@ -109,6 +109,21 @@ onDelete() {
 
 }
 
+isImage(): boolean {
+
+  // Agar avatar empty, undefined ya null hai to false return karo
+  // Matlab koi valid image path nahi mila to image nahi dikhegi
+  if (!this.avatar) return false;
+
+  // Agar avatar me koi valid image extension ho (sirf .png ya .jpg) 
+  // ya phir avatar URL me 'pravatar.cc' likha ho to true return karo
+  // true ka matlab image valid hai, DOM me dikhayi jayegi
+
+  return /\.(png|jpg)$/i.test(this.avatar) || this.avatar.includes('pravatar.cc');
+
+}
+
+
 }
 
 

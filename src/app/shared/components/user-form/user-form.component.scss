@@ -17,8 +17,8 @@ background: #080818;
  margin: 0 60px;
   color: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
- 
 }
+ 
 
 // .form-card:hover {
 //   transform: translateY(-5px);
@@ -82,10 +82,9 @@ background: #080818;
 
 
 
-::ng-deep .user-form-snackbar {
+::ng-deep .user-form-snackbar  {
 
-  
-   background-color: #d4edda !important;
+  background-color: #d4edda !important;
   color: #155724 !important;
    font-weight: 600;
   font-family: Georgia !important;
@@ -95,7 +94,9 @@ background: #080818;
   letter-spacing:2px;
   font-family: Georgia !important;
   // font-style: italic;
+  
 }
+
 ::ng-deep  .mat-simple-snackbar {
   
   font-size: 18px !important;
