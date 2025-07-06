@@ -37,13 +37,12 @@ const routes: Routes = [
 
 
   // 404 Fallback (Optional)
-   {
-    path:'admin',
-    component:PageNotFoundComponent
-   }
-  // { path: '**', redirectTo: 'login' }
+   // app-routing.module.ts
+{ path: 'not-found', component: PageNotFoundComponent },
+{ path: '**', redirectTo: 'not-found' }
 
-
+  
+  // here ** means any value
 ];
 
 
