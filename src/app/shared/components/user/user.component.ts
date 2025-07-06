@@ -119,7 +119,7 @@ isImage(): boolean {
   // ya phir avatar URL me 'pravatar.cc' likha ho to true return karo
   // true ka matlab image valid hai, DOM me dikhayi jayegi
 
-  return /\.(png|jpg)$/i.test(this.avatar) || this.avatar.includes('pravatar.cc');
+  return /\.(png|jpg|jpeg)$/i.test(this.avatar) || this.avatar.includes('pravatar.cc');
 
 }
 
