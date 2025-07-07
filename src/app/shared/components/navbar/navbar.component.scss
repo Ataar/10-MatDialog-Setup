@@ -1,6 +1,6 @@
 .whatsapp-navbar {
   background-color: #075e54;
-  padding: 0.5rem 1rem;
+  padding: 0.1rem 1rem;
 
   .navbar-brand {
     color: white;
@@ -9,7 +9,9 @@
 
     .brand-logo {
       height: 50px;
-      width: 50px;
+      width: 130px;
+      display: inline-block;
+      margin-left: -30px;
     }
 
     .brand-text {

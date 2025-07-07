@@ -67,66 +67,124 @@ export class UsersService {
      this.route.navigate(['/users'])
   }
 
+
+  //####################################    Start Update Function    ####################################
+
   
 // API Call to update user object
  
-updateUser(updateObj : Iuser)
+// Function ka naam 'updateUser' hai, ye ek object lega 'updateObj' jo ki Iuser type ka hai
+updateUser(updateObj: Iuser)
 {
-   let upadtedIndex = this.users.findIndex(obj=>obj.id===updateObj.id)
+   // 'findIndex' method se array 'this.users' me wo index dhoond rahe hain jiska id, updateObj.id ke barabar ho
+   let upadtedIndex = this.users.findIndex(obj => obj.id === updateObj.id);
+
+   // console me index print hoga, jaha pe matching id mila
    console.log(upadtedIndex);
-   this.users[upadtedIndex] = updateObj
-  this.route.navigate(['users'])
+
+   // Us index par purane object ko naya updateObj se replace kar diya ja raha hai
+   this.users[upadtedIndex] = updateObj;
+
+   // 'users' route par redirect kar rahe hain, taki list wapas dikhe
+   this.route.navigate(['users']);
 }
 
 
+// ----------------------------------------------------------------------------------
 
 
-// deletUser ek string parameter hai jisme delete hone wale user ka id aayega
-onDelete(deletUser: string) {
+// updateUser(updateObj: Iuser)
+// {
+//    // users array ke andar har object ki id ka naya array bana rahe hain
+//    let idsArray = this.users.map(obj => obj.id);
 
-// findIndex method se users array me se us user ka index dhoondh rahe hain jiska id, deletUser ke barabar hai
-// Agar milta hai to index me uska position aayega (0,1,2...) nahi mila to -1 aayega
-  let index = this.users.findIndex(userDel => userDel.id === deletUser);
+//    // idsArray me jis index pe updateObj.id match karta hai wo index milta hai
+//    let updatedIndex = idsArray.indexOf(updateObj.id);
 
+//    // index ko console me dekhne ke liye print kar rahe hain
+//    console.log(updatedIndex);
+
+//    // matching index pe purana object ko naya updateObj se replace kar rahe hain
    
-   // Agar index -1 nahi hai matlab user mil gaya array me
-  if (index !== -1) {
+//    this.users[updatedIndex]= updateObj;
+
+//    // users route pe wapas ja rahe hain
+//    this.route.navigate(['users']);
+// }
+
+  //####################################   End Update Function   ####################################
 
 
-//  splice method se uss index wale user ko array se hata rahe hain
-//  1 ka matlab sirf ek hi item delete hoga
-    this.users.splice(index, 1);
-  }
 
-  // Route service ka use karke 'users' path par navigate kar rahe hain
+
+
+
+
+
+
+
+
+//####################################  start  onDelete Function       ####################################
+
+
+// deletUser ek string parameter hai, jisme delete hone wale user ka id aayega
+onDelete(deletUser:string)
+{
+  
+  
+// findIndex method se users array me se us user ka index dhoondh rahe hain jiska id, deletUser ke barabar hai
+// Agar milta hai to index number aayega (0,1,2...), nahi mila to -1 aayega
+// removerUser variable me index store ho raha hai
+  let removerUser = this.users.findIndex(user=>user.id===deletUser)
+
+  // splice method se uss index wale user ko array se hata rahe hain
+// removerUser index se 1 item remove hoga (matlab wo user delete hoga)
+  this.users.splice(removerUser , 1)
+
+  // Route service ka use karke 'users' page par navigate kar rahe hain
 // Matlab user ko users list wale page par le ja rahe hain
   this.route.navigate(['users'])
+
 }
+
+}
+
+
+
+// --------------------------------------------------------------------
+
+
+
+  //    deletUser ek string parameter hai jisme delete hone wale user ka id aayega
+ //    onDelete(deletUser: string) {
+  
+   // findIndex method se users array me se us user ka index dhoondh rahe hain jiska id, deletUser ke barabar hai
+   // Agar milta hai to index me uska position aayega (0,1,2...) nahi mila to -1 aayega
+  //   let index = this.users.findIndex(userDel => userDel.id === deletUser);
+  
+     
+  //    Agar index -1 nahi hai matlab user mil gaya array me
+  //   if (index !== -1) {
+  
+  
+   //    splice method se uss index wale user ko array se hata rahe hain
+ //      1 ka matlab sirf ek hi item delete hoga
+//       this.users.splice(index, 1);
+     
+  
+     // Route service ka use karke 'users' path par navigate kar rahe hain
+   // Matlab user ko users list wale page par le ja rahe hain
+  //   this.route.navigate(['users'])
+  // }
 
 // Note: - Ye method kisi user ko uske id ke basis par users array se remove karta hai 
 // aur fir 'users' page par le jaata hai.
 
 
+//####################################  End  onDelete Function   ####################################
 
 
-// ----------------------------------------------------
-
-
-  // getUserData(id: string): Iuser {
-  //   return this.users.find((user) => user.id === +id)!;
-    
-  // }
-
-
-// ----------------------------------------------------
 
   
-//   getUserData(id: string): Iuser | undefined {
-   
-//   return this.users.find(user => user.id === +id);
-// }
-// ----------------------------------------------------
-  
-}
 
 
