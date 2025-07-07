@@ -80,14 +80,32 @@ updateUser(updateObj : Iuser)
 
 
 
+
+// deletUser ek string parameter hai jisme delete hone wale user ka id aayega
 onDelete(deletUser: string) {
+
+// findIndex method se users array me se us user ka index dhoondh rahe hain jiska id, deletUser ke barabar hai
+// Agar milta hai to index me uska position aayega (0,1,2...) nahi mila to -1 aayega
   let index = this.users.findIndex(userDel => userDel.id === deletUser);
 
+   
+   // Agar index -1 nahi hai matlab user mil gaya array me
   if (index !== -1) {
+
+
+//  splice method se uss index wale user ko array se hata rahe hain
+//  1 ka matlab sirf ek hi item delete hoga
     this.users.splice(index, 1);
   }
+
+  // Route service ka use karke 'users' path par navigate kar rahe hain
+// Matlab user ko users list wale page par le ja rahe hain
   this.route.navigate(['users'])
 }
+
+// Note: - Ye method kisi user ko uske id ke basis par users array se remove karta hai 
+// aur fir 'users' page par le jaata hai.
+
 
 
 
