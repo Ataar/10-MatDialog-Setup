@@ -150,6 +150,27 @@ onDelete(deletUser:string)
 }
 
 
+// --------------------------------------------------------------
+
+
+
+// onDelete(delUser:string)
+
+// {
+//    let del = this.users.map(obj=>obj.id)
+//    {
+//       let delObj  = del.indexOf(delUser)
+//       console.log(delObj);
+
+//       this.users.splice(delObj , 1);
+//        this.route.navigate(['users']);  
+      
+      
+//    }
+// }
+  
+
+
 
 // --------------------------------------------------------------------
 
@@ -185,6 +206,5 @@ onDelete(deletUser:string)
 
 
 
-  
 
 
