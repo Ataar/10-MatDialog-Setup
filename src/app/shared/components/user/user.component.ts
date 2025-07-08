@@ -32,7 +32,7 @@ export class UserComponent implements OnInit , OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['userId'];
+    // this.id = this.route.snapshot.params['userId'];
 
     // Search user by ID from array
     if(this.id)

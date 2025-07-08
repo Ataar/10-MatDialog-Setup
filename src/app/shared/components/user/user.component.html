@@ -1,6 +1,6 @@
 
 
-<div class="user-container" *ngIf="avatar && name">
+<div class="user-container" *ngIf="avatar && name && id; else noUser">
 <div class="profile-wrapper">
 
 <div class="go-back-btn ">
@@ -51,6 +51,7 @@ Agar false return karega to element DOM me hoga hi nahi (completely remove ho ja
 </div>
  
 
+
 <div class="card-footer border-white my-2  d-flex">
 <button routerLink="edit" mat-raised-button color="primary">Edit</button>
 <button (click)="onDelete()" mat-raised-button color="warn">Delete</button>
@@ -58,6 +59,23 @@ Agar false return karega to element DOM me hoga hi nahi (completely remove ho ja
 
 </div>
 </div>
+<!-- <ng-template #noUser>
+  <div class="row justify-content-center">
+    <p class="alert alert-info col-md-4 text-center">
+      No User Found
+    </p>
+  </div>
+</ng-template> -->
+
+<ng-template #noUser>
+  <div class="no-user-container">
+    <p class="no-user-message">No User Found</p>
+  </div>
+</ng-template>
+
+
+
+
 
 
 

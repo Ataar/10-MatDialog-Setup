@@ -176,6 +176,23 @@ border-left: 2px solid rgba(255, 165, 0, 0.9);   /* Orange */
 }
 
 
+.no-user-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; // Adjust as needed for vertical space
+}
+
+.no-user-message {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  padding: 12px 50px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
 
 
 
