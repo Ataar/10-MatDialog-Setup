@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../service/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iproduct } from '../../models/products';
-import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 

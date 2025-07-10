@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Iproduct } from '../models/products';
 import { Router } from '@angular/router';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root',
@@ -94,7 +95,10 @@ export class ProductsService {
   ];
  
 
-  constructor(private router : Router) {}  // router instance is injected 
+  constructor(
+    private router : Router, // router instance is injected
+    private snackbar : SnackbarService
+    ) {}   
 
   // API call to fetch all products data
   fetchAllproducts(): Array<Iproduct> {
@@ -111,6 +115,8 @@ export class ProductsService {
       // API call to POST new Product in DB
      this.productsArr.push(prod);
     this.router.navigate(['/products']);
+    this.snackbar.openSnackBar('✅ Success! A new user has been added.')
+     
    }
 
    updatedObj(updatePro:Iproduct)
@@ -120,6 +126,9 @@ export class ProductsService {
 
       this.productsArr[getIndex] = updatePro;
       this.router.navigate(['/products',updatePro.pid]);
+      this.snackbar.openSnackBar('✅ All set! The user has been updated.')
+      // this.snackbar.openSnackBar('✅ Changes saved! Everything’s up to date.')
+
    }
 
 
@@ -131,6 +140,7 @@ export class ProductsService {
        this.productsArr.splice(getIndex , 1)
         // if we want to navigate form ts so RouterService will help to navigate 
         this.router.navigate(['products'])
+        this.snackbar.openSnackBar('✅ Product removed from the list.')
    
    }
 
