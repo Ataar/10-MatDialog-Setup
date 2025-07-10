@@ -42,21 +42,38 @@ export class UsersComponent implements OnInit  , OnDestroy{
 // ---------------------- Start:-  To remove the image which has wrong path-------------------------
 
 
-isValidImage(url: string): boolean {
+// isValidImage(url: string): boolean {
   
-  // Step 1: Agar URL empty ya undefined hai to false return karo, image nahi dikhegi
-  if (!url) return false;
+//   // Step 1: Agar URL empty ya undefined hai to false return karo, image nahi dikhegi
+//   if (!url) return false;
 
-  // Step 2:
-  // Check karo:
-  //  -> Agar URL ka end '.png' ya '.jpg' extension se ho to true return karo (image valid mani jayegi)
-  //  -> Ya agar URL me 'pravatar.cc' likha ho to bhi true return karo (kyunki ye dynamic image API hai)
-  // Agar dono me se koi bhi condition match nahi hoti to false return hoga
+//   // Step 2:
+//   // Check karo:
+//   //  -> Agar URL ka end '.png' ya '.jpg' extension se ho to true return karo (image valid mani jayegi)
+//   //  -> Ya agar URL me 'pravatar.cc' likha ho to bhi true return karo (kyunki ye dynamic image API hai)
+//   // Agar dono me se koi bhi condition match nahi hoti to false return hoga
 
-  return /\.(png|jpg)$/i.test(url) || url.includes('pravatar.cc');
-}
+//   return /\.(png|jpg)$/i.test(url) || url.includes('pravatar.cc');
+  
+// }
 
 // ----------------------End:-   To remove the image which has wrong path-------------------------
+
+
+
+
+
+isValidImage(url: string): boolean {
+  if (!url) return false;
+
+  // Extension check: png, jpg, jpeg, gif, webp, bmp, svg
+  const hasImageExtension = /\.(png|jpe?g|gif|webp|bmp|svg)$/i.test(url);
+
+  // Online image check: agar 'http' ya 'https' se start ho aur 'images', 'img', 'photo', etc. ho URL me
+  const isOnlineImage = /^https?:\/\/.+\.(png|jpe?g|gif|webp|bmp|svg)?/i.test(url);
+
+  return hasImageExtension || isOnlineImage;
+}
 
 
 }

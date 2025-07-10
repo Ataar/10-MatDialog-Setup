@@ -109,18 +109,32 @@ onDelete() {
 
 }
 
-isImage(): boolean {
+// isImage(): boolean {
 
-  // Agar avatar empty, undefined ya null hai to false return karo
-  // Matlab koi valid image path nahi mila to image nahi dikhegi
-  if (!this.avatar) return false;
+//   // Agar avatar empty, undefined ya null hai to false return karo
+//   // Matlab koi valid image path nahi mila to image nahi dikhegi
+//   if (!this.avatar) return false;
 
-  // Agar avatar me koi valid image extension ho (sirf .png ya .jpg) 
-  // ya phir avatar URL me 'pravatar.cc' likha ho to true return karo
-  // true ka matlab image valid hai, DOM me dikhayi jayegi
+//   // Agar avatar me koi valid image extension ho (sirf .png ya .jpg) 
+//   // ya phir avatar URL me 'pravatar.cc' likha ho to true return karo
+//   // true ka matlab image valid hai, DOM me dikhayi jayegi
 
-  return /\.(png|jpg|jpeg)$/i.test(this.avatar) || this.avatar.includes('pravatar.cc');
+//   return /\.(png|jpg|jpeg)$/i.test(this.avatar) || this.avatar.includes('pravatar.cc');
 
+// }
+
+
+
+isImage(url: string): boolean {
+  if (!url) return false;
+
+  // Extension check: png, jpg, jpeg, gif, webp, bmp, svg
+  const hasImageExtension = /\.(png|jpe?g|gif|webp|bmp|svg)$/i.test(url);
+
+  // Online image check: agar 'http' ya 'https' se start ho aur 'images', 'img', 'photo', etc. ho URL me
+  const isOnlineImage = /^https?:\/\/.+\.(png|jpe?g|gif|webp|bmp|svg)?/i.test(url);
+
+  return hasImageExtension || isOnlineImage;
 }
 
 
