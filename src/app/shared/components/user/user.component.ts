@@ -2,9 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../service/users.service';
 import { Subscription } from 'rxjs';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+// import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { CustomDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 
 @Component({
@@ -90,10 +92,12 @@ goBack() {
 
 
 onDelete() {
-   const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+   const dialogRef = this.dialog.open(CustomDialogComponent, {
       data: {
         title: 'Confirm Delete',
-        message: 'Are you sure you want to delete this product?'
+         message: 'Are you sure you want to delete this User?',
+       
+        
       }
     });
   console.log('Deleted:', this.id);

@@ -40,6 +40,7 @@ import 'emoji-picker-element';
     BrowserAnimationsModule,
     HttpClientModule,
     SharedModule  // ✅ All shared components, directives, material, forms, etc.
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

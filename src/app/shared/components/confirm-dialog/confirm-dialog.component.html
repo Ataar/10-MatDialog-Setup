@@ -1,4 +1,4 @@
-<h2 class="confirm">Confirm Delete</h2>
+ <!-- <h2 class="confirm">Confirm Delete</h2>
 
 <mat-dialog-content class="mat-color">
   <p>{{ data.message }}</p>
@@ -6,4 +6,38 @@
 <mat-dialog-actions align="center">
   <button mat-raised-button color="primary" (click)="onYesClick()">Yes</button>
   <button mat-raised-button color="accent" (click)="onNoClick()">No</button>
+</mat-dialog-actions>  -->
+
+
+
+<!-- <h2 mat-dialog-title class="text-center">{{ data.title }}</h2> -->
+
+  <!-- 🔁 Delete Animation Video -->
+<mat-dialog-content class="dialog-content">
+  <video class="deleteVedio"
+    src="assets/trash-icon-delete-12770648-10397056.mp4/"
+    autoplay
+    muted
+    loop
+    width="100"
+    height="100"
+  ></video>
+
+
+
+  <p class="text-center">{{ data.message }}</p>
+</mat-dialog-content>
+
+
+  <!-- <mat-dialog-actions align="center" class="button-actions">
+  <button mat-raised-button color="warn" (click)="onYes()">Yes</button>
+  <button mat-raised-button color="primary" (click)="onClose()">Close</button>
+</mat-dialog-actions>
+ -->
+
+<mat-dialog-actions align="center">
+  <div class="button-actions">
+    <button mat-raised-button color="warn" (click)="onYes()">Yes</button>
+    <button mat-raised-button color="primary" (click)="onClose()">Close</button>
+  </div>
 </mat-dialog-actions>

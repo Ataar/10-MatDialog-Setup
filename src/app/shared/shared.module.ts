@@ -8,7 +8,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 // ✅ Shared Components
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+
+// import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+
+ import { CustomDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 const matModArr = [
   MatSnackBarModule
@@ -17,8 +20,8 @@ const matModArr = [
 @NgModule({
   declarations: [
     NavbarComponent,
-    ConfirmDialogComponent,
-    
+    CustomDialogComponent
+    // ConfirmDialogComponent
   ],
   imports: [
     CommonModule,
@@ -27,11 +30,10 @@ const matModArr = [
     MaterialModule,
     RouterModule , // ✅ IMPORTED HERE
     MatSnackBarModule,
-    ...matModArr 
+    ...matModArr ,
   ],
   exports: [
     NavbarComponent,
-    ConfirmDialogComponent,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,

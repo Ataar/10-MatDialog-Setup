@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../service/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iproduct } from '../../models/products';
+import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+
+// import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+
+import { CustomDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-product',
@@ -60,7 +64,7 @@ goToProduct(url: string) {
 
 
 onDelete() {
-  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+  const dialogRef = this.dialog.open(CustomDialogComponent, {
     data: {
       title: 'Confirm Delete',
       message: 'Are you sure you want to delete this product?'
