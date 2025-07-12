@@ -3,9 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../service/users.service';
 import { Subscription } from 'rxjs';
 
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-// import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { CustomDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 
@@ -23,6 +22,8 @@ export class UserComponent implements OnInit , OnDestroy {
   email!:string;
 
   userSubscription !:Subscription
+
+  userDelSubscribe !: Subscription
 
   constructor(
     private route: ActivatedRoute,
@@ -72,17 +73,6 @@ export class UserComponent implements OnInit , OnDestroy {
   }
 
 
-  ngOnDestroy(): void {
-    
-    // if (this.userSubscription) check karega ki:
-    // Kya isme koi subscription object hai?
-   // Agar hai to safely unsubscribe karo.
-   // Agar nahi hai to kuch mat karo — program continue rahega, koi error nahi.
-
-   if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-   }
-}
 
 
 goBack() {
@@ -92,26 +82,53 @@ goBack() {
 
 
 onDelete() {
-   const dialogRef = this.dialog.open(CustomDialogComponent, {
-      data: {
-        title: 'Confirm Delete',
-         message: 'Are you sure you want to delete this User?',
- 
-        
-      }
-    });
-  console.log('Deleted:', this.id);
-   dialogRef.afterClosed().subscribe(result => {
-  if(result)
-  {
-    this.userService.onDelete(this.id);
-    this._snackBar.open('Deleted Successfully!', '', { duration: 1000, horizontalPosition: 'center', verticalPosition: 'top',panelClass: 'user-delete-snackbar' });
-
-  }
-})
+  const dialogConfig = new MatDialogConfig();  // jab dialogBox ke bahar click karenge to wo hide nahi hoga
+  dialogConfig.disableClose = true;
+  // title: 'Confirm Delete',
+  dialogConfig.data = ` Are you sure you want to delete this User?`
+    
 
 
+  const dialogRef = this.dialog.open(CustomDialogComponent, dialogConfig);
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.userService.onDelete(this.id);
+      this._snackBar.open('Deleted Successfully!', '', {
+        duration: 1000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        panelClass: 'user-delete-snackbar'
+      });
+    }
+  });
+
+  
+
+  
 }
+
+
+// onDelete() {
+//   const dialogRef = this.dialog.open(CustomDialogComponent, {
+//     data: {
+//       title: 'Confirm Delete',
+//       message: 'Are you sure you want to delete this User?',
+//       }
+//   });
+//   console.log('Deleted:', this.id);
+//    dialogRef.afterClosed().subscribe(result => {
+//     // console.log(result);
+//   if(result)
+//   {
+//     this.userService.onDelete(this.id);
+//     this._snackBar.open('Deleted Successfully!', '', { duration: 1000, horizontalPosition: 'center', verticalPosition: 'top',panelClass: 'user-delete-snackbar' });
+
+//   }
+// })
+// }
+
+
 
 // isImage(): boolean {
 
@@ -139,6 +156,21 @@ isImage(url: string): boolean {
   const isOnlineImage = /^https?:\/\/.+\.(png|jpe?g|gif|webp|bmp|svg)?/i.test(url);
 
   return hasImageExtension || isOnlineImage;
+}
+  ngOnDestroy(): void {
+    
+    // if (this.userSubscription) check karega ki:
+    // Kya isme koi subscription object hai?
+   // Agar hai to safely unsubscribe karo.
+   // Agar nahi hai to kuch mat karo — program continue rahega, koi error nahi.
+
+   if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+   }
+
+     if (this.userDelSubscribe) {
+      this.userDelSubscribe.unsubscribe();
+   }
 }
 
 

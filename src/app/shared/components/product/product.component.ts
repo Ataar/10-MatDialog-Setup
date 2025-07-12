@@ -3,11 +3,12 @@ import { ProductsService } from '../../service/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iproduct } from '../../models/products';
 import { Location } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 // import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 import { CustomDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { SnackbarService } from '../../service/snackbar.service';
 
 @Component({
   selector: 'app-product',
@@ -29,7 +30,8 @@ product ! : Iproduct
     private prodsutsService : ProductsService,
     // private location : Location,
   private router: Router,
-   private dialog: MatDialog
+   private dialog: MatDialog,
+   private _snackbar:SnackbarService
     
   ) { }
 
@@ -61,15 +63,17 @@ goToProduct(url: string) {
 // goToProduct(url: string | null) {
 //   url ? window.open(url, '_blank', 'noopener') : this.router.navigate(['/products']);
 // }
+// _________________________________________________________________________________________________
 
 
 onDelete() {
-  const dialogRef = this.dialog.open(CustomDialogComponent, {
-    data: {
-      title: 'Confirm Delete',
-      message: 'Are you sure you want to delete this product?'
-    }
-  });
+  // this is the configration object
+  const dialog = new MatDialogConfig();
+  dialog.disableClose = true; // ✅ User can't close by clicking outside or pressing ESC
+  dialog.data = 'Are you sure you want to delete this product?';
+  
+  // here open method contains 2 arguments so 1 argument must be component and 2 must be configration.
+  const dialogRef = this.dialog.open(CustomDialogComponent, dialog);
 
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
@@ -78,8 +82,89 @@ onDelete() {
     }
   });
 }
- 
+
 }
+
+
+// onDelete() {
+//   const dialog = new MatDialogConfig() ;
+//   dialog.disableClose = true;
+//   dialog.data = `Are you sure you want to delete this Product?`
+//   const dialogRef = this.dialog.open(CustomDialogComponent)
+//    dialogRef.afterClosed().subscribe(result => {
+//     if (result) {
+//       this.prodsutsService.onDelPro(this.product);
+//        this._snackbar.open('Deleted Successfully!', '', {
+//         duration: 1000,
+//         horizontalPosition: 'center',
+//         verticalPosition: 'top',
+//         panelClass: 'user-delete-snackbar'
+//       });
+//       this.router.navigate(['/products']);
+//     }
+//   });
+// }
+
+
+
+// -------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
