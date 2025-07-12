@@ -32,7 +32,8 @@ import 'emoji-picker-element';
     ProductFormComponent,
     UserComponent,
     UserFormComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    
   ],
   imports: [
     BrowserModule,
