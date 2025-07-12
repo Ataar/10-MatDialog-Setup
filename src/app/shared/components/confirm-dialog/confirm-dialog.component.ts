@@ -38,6 +38,8 @@ export class CustomDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any // Parent component se data receive karne ke liye
   ) {}
 
+   
+
 
   onYes()
   {
@@ -46,4 +48,6 @@ export class CustomDialogComponent {
   onClose(): void {
     this.dialogRef.close(false); // Dialog close karne ka method
   }
+
+  
 }
