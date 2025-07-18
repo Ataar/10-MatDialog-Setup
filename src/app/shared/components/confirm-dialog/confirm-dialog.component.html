@@ -1,8 +1,7 @@
 <!-- 🔁 Delete Animation Video -->
 
-<mat-dialog-content class="dialog-content">
-  <img 
-    class="deleteVedio"
+<div class="dialog-content">
+  <img  class="deleteVedio"
     src="assets/images/trash-icon-delete-12770648-103-unscreen.gif"
      autoplay
     muted
@@ -12,17 +11,23 @@
   />
 
 <p class="text-center">{{message }}</p>
+<div class="button-actions ">
+  <button mat-raised-button color="warn" (click)="onYes()">Yes</button>
+  <button mat-raised-button color="primary" (click)="onClose()">Cancel</button>
+</div>
 
-</mat-dialog-content> 
+</div> 
 
 
- <mat-dialog-actions align="center" class="dialogBox">
+ <!-- <mat-dialog-actions align="center" class="dialogBox">
   <div class="button-actions">
     <button mat-raised-button color="warn" (click)="onYes()">Yes</button>
     <button mat-raised-button color="primary" (click)="onClose()">Cancel</button>
   </div>
-</mat-dialog-actions> 
+</mat-dialog-actions>  -->
 
+
+ 
 
 
 
