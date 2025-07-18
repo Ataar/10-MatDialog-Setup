@@ -1,4 +1,4 @@
-// .dialog-conten {
+// ::ng-deep.mat-dialog-container {
 //     display: block;
 //     padding: 24px;
 //     border-radius: 4px;
@@ -10,26 +10,24 @@
 //     min-height: inherit;
 //     max-height: inherit;
 //     border-radius: 20px;
-   
 // }
 
-.dialog-content {
-  padding: 20px;
+::ng-deep .mat-dialog-container {
+  padding:25px;
   margin-top: 1px;
   background: #afd7c1;
-  border-radius: 8px;
   border: 8px solid transparent;
+  border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  /* 👇 Animation */
-  opacity: 0;
-  transform: scale(0.5);
-  animation: zoomInBox 0.6s ease-out forwards;
+
+  /* 🔥 Smooth zoom-in from small */
+  animation: zoomInSlow 3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-@keyframes zoomInBox {
+@keyframes zoomInSlow {
   0% {
     opacity: 0;
-    transform: scale(0.5);
+    transform: scale(0.10);
   }
   100% {
     opacity: 1;
@@ -47,14 +45,14 @@
   font-weight: bold;
 
 }
- .button-actions button
+ .mat-dialog-actions button
 {
   margin: 10px 40px;
 }
 
 
 
-.dialog-content img
+.mat-dialog-content img
 {
      margin-left: 8rem;
    
@@ -63,40 +61,31 @@
 
 
 
-// /* Common style for .button-actions under max-width: 425px */
-// @media (max-width: 425px) {
-//   .button-actions {
-//     display: flex;
-//     justify-content: center;
-//     gap: 12px;
-//   }
-// }
+/* Common style for .button-actions under max-width: 425px */
+@media (max-width: 425px) {
+  ::ng-deep .button-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+}
 
 /* Only video margin changes across different widths */
 
 @media (max-width: 425px) {
- .dialog-content img {
-    margin-left: 5rem;
+  .mat-dialog-content img {
+    margin-left: 5.5rem;
   }
-   .button-actions button
-{
-  margin:5px auto;
-}
 }
 
 @media (max-width: 375px) {
- .dialog-content img {
-    margin-left: 3rem;
+  .mat-dialog-content img {
+    margin-left: 4rem;
   }
-  .button-actions button
-{
-  margin:5px;
-  
-}
 }
 
 @media (max-width: 320px) {
-.dialog-content img {
+  .mat-dialog-content img {
     margin-left: 3rem;
   }
 }

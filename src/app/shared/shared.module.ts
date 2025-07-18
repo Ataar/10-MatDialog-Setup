@@ -23,8 +23,6 @@ const matModArr = [
     CustomDialogComponent
     // ConfirmDialogComponent
   ],
-
-  
   imports: [
     CommonModule,
     FormsModule,
